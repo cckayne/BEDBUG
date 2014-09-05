@@ -6,7 +6,7 @@
 
 What is BEDBUG?
 
-BEDBUG is a small, fast cryptographically secure pseudo-random number generator (CSPRNG) and stream cipher. It exhibits uniform distribution, mixes rapidly (with worst-case avalanche better than 16-bits), has no detected bias, and comes in three variants: BEDBUG128, with an internal state array of 128+3 32-bit words; BEDBUG256, with an internal state array of 256+3 32-bit words; and BEDBUG512 with a 512+3-word state. The former permit seeding with a key of up to 512 or 1024 bits, the latter with a 2048-bit key.
+BEDBUG is a small, fast, cryptographically secure pseudo-random number generator (CSPRNG) and stream cipher. It exhibits uniform distribution, mixes rapidly (with worst-case avalanche better than 16-bits), has no detected bias, and comes in three variants: BEDBUG128, with an internal state array of 128+3 32-bit words; BEDBUG256, with an internal state array of 256+3 32-bit words; and BEDBUG512 with a 512+3-word state. The former permit seeding with a key of up to 512 or 1024 bits, the latter with a 2048-bit key.
 
 The BEDBUG generator itself is a mere 5 lines of code:
 
@@ -47,15 +47,15 @@ To view BEDBUG's abbreviated internal state, please uncomment "#define TEST" in 
 
 PRNG tests passed by BEDBUG:
 
-NIST suite of statistical tests for randomness: all tests for all seeds
-George Marsaglia's DIEHARD suite: all tests for all seeds
-Bob Jenkins' countx for sub-sequences of length 3-11
-Bob Jenkins' rngav (avalanche better than 16.5 bits average)
-John Walker's Ent test for entropy
-C.C.Kayne's GapTrial (value-spacings normal over all modulos)
-C.C.Kayne's ModTrial (value-distributions uniform over all modulos)
-C.C.Kayne's SeqTrial (same-value sequences normal over all modulos)
-C.C.Kayne's Visual 1 & 2
+* NIST suite of statistical tests for randomness: all tests for all seeds
+* George Marsaglia's DIEHARD suite: all tests for all seeds
+* Bob Jenkins' countx for sub-sequences of length 3-11
+* Bob Jenkins' rngav (avalanche better than 16.5 bits average)
+* John Walker's ENT test for entropy
+* C.C.Kayne's GapTrial (value-spacings normal over all modulos)
+* C.C.Kayne's ModTrial (value-distributions uniform over all modulos)
+* C.C.Kayne's SeqTrial (same-value sequences normal over all modulos)
+* C.C.Kayne's Visual 1 & 2
 
 (Please view the Results.txt files in the relevant folders or verify the recorded results by re-running the tests themselves.)
 
@@ -73,3 +73,5 @@ Have fun with BEDBUG, and don't hesitate to get in touch if you encounter issues
 
 C.C.Kayne
 cckayne@gmail.com
+https://github.com/cckayne/BEDBUG
+https://code.google.com/p/bedbug-csprng-stream-cipher/
