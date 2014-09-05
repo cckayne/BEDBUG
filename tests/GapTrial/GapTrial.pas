@@ -227,7 +227,7 @@ PROCEDURE Usage;
 		Writeln('Example: >gaptrial 26 32 "my seed" 2');
 		Writeln('Permitted range for # trials: ',MINTHROWS,'-2**64.');
 		Writeln('(If # given is in [8..64], 2**# is assumed.)');
-		Writeln('Available RNGs: [0..14] 2=ISAAC 3=BB128 4=BB256 6=BB512.');
+		Writeln('Available RNGs: [0..14] 2=ISAAC 3=BB128 4=BB256 5=BB512.');
 		Writeln('All command line parameters are optional.');
 		Writeln('Default: mod 26 BB512 with 100000000 trials.');
 		Writeln;

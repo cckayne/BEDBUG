@@ -1,6 +1,6 @@
 {$mode delphi}
 { $define distrib}
-{$define SAM}
+{ $define SAM}
 { $define caesar}
 { $define VERBOSE}
 PROGRAM ModTrial;
