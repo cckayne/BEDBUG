@@ -1,8 +1,8 @@
 // die: generate a bit-stream file of pseudo-random values for DIEHARD tests.
-// Usage:   >die <rng #> <seed>
-// Example: >die 4 "my seed"
+// Usage:   >die <rng #> <seed> <# of bitsreams>
+// Example: >die 4 "my seed" 100
 //(seed BB512 with seed "my seed" and generate a file named BB512.32)
-// rng # in [0..13] 0=CONG, 2=ISAAC, 3=BB256, 4=BB512, 6=KISS etc.
+// rng # in [0..14] 0=CONG, 2=ISAAC, 3=BB128, 4=BB256, 5=BB512
 // Output: a file named <rng-name>.32 (Example: KISS.32)
 program die;
 
@@ -17,12 +17,14 @@ var 	key: string = 'FSBiaccenRI';
 		i,nw,total,fSz: Cardinal;
 		fOut: file;
 		fname: string = 'die.32';
-
+		// # of bitstreams for NIST tests
+		bss: Cardinal = 100;
+		
 procedure Usage;
 	begin
 		Writeln('die: generate a bit-stream file of pseudo-random values for DIEHARD tests.');
-		Writeln('Usage  : >die <rng #> <seed>');
-		Writeln('Example: >die 4 "my seed"');
+		Writeln('Usage  : >die <rng #> <seed> <# of bitsreams>');
+		Writeln('Example: >die 4 "my seed" 100');
 		Writeln('(seed BB512 with seed "my seed" and generate a file named BB512.32)');
 		Writeln('(rng # in [0..14] 0=CONG, 2=ISAAC, 3=BB128, 4=BB256, 5=BB512)');
 		Writeln('Output: a file named <rng-name>.32 (Example: KISS.32)');
@@ -34,6 +36,7 @@ begin
 	if ParamCount>=1 then if ParamStr(1)[1] in ['a'..'z','A'..'Z','-'] then begin Usage; Halt; end;
 	if ParamCount>=1 then ng := TRNG(StrToInt(ParamStr(1)));
 	if ParamCount>=2 then key := ParamStr(2);
+	if ParamCount>=3 then bss := StrToInt(ParamStr(3));
 	// set the output filename
 	fname := rngs[ng] + '.32';
 	// seed all available RNGs
@@ -52,4 +55,8 @@ begin
 	until (nw=0) or (total>=fSz);
 	Close(fOut);
 	Writeln(IntToStr(total)+' bytes written to <'+fname+'>. ');
+	// NIST Section output
+	// NIST apparently divides a binary sequence into a user-specified number of bitsreams.
+	// So here we help the user by outputting their sizes based on the total bytes written.
+	Writeln(bss,' bitstreams of length ',total div bss);
 end.
