@@ -1,0 +1,333 @@
+ BIRTHDAY SPACINGS TEST, M= 512 N=2**24 LAMBDA=  2.0000
+           BB128.32        using bits  1 to 24 p-value=  .646011
+           BB128.32        using bits  2 to 25 p-value=  .017772
+           BB128.32        using bits  3 to 26 p-value=  .298083
+           BB128.32        using bits  4 to 27 p-value=  .108875
+           BB128.32        using bits  5 to 28 p-value=  .534679
+           BB128.32        using bits  6 to 29 p-value=  .878014
+           BB128.32        using bits  7 to 30 p-value=  .127671
+           BB128.32        using bits  8 to 31 p-value=  .596836
+           BB128.32        using bits  9 to 32 p-value=  .192078
+   The 9 p-values were
+        .646011   .017772   .298083   .108875   .534679
+        .878014   .127671   .596836   .192078
+  A KSTEST for the 9 p-values yields  .656319
+--------------------------------------------------------------------------------
+           OPERM5 test for file BB128.32       
+ chisquare for 99 degrees of freedom=130.734; p-value= .982009
+           OPERM5 test for file BB128.32       
+ chisquare for 99 degrees of freedom= 85.473; p-value= .168175
+--------------------------------------------------------------------------------
+    Binary rank test for BB128.32       
+         Rank test for 31x31 binary matrices:
+        rows from leftmost 31 bits of each 32-bit integer
+      rank   observed  expected (o-e)^2/e  sum
+        28       210     211.4   .009511     .010
+        29      5118    5134.0   .049927     .059
+        30     23199   23103.0   .398519     .458
+        31     11473   11551.5   .533790     .992
+  chisquare=  .992 for 3 d. of f.; p-value= .356409
+    Binary rank test for BB128.32       
+         Rank test for 32x32 binary matrices:
+        rows from leftmost 32 bits of each 32-bit integer
+      rank   observed  expected (o-e)^2/e  sum
+        29       206     211.4   .138848     .139
+        30      5111    5134.0   .103130     .242
+        31     23104   23103.0   .000039     .242
+        32     11579   11551.5   .065351     .307
+  chisquare=  .307 for 3 d. of f.; p-value= .331013
+--------------------------------------------------------------------------------
+ b-rank test for bits  1 to  8 p=1-exp(-SUM/2)= .71049
+ b-rank test for bits  2 to  9 p=1-exp(-SUM/2)= .68339
+ b-rank test for bits  3 to 10 p=1-exp(-SUM/2)= .34685
+ b-rank test for bits  4 to 11 p=1-exp(-SUM/2)= .08175
+ b-rank test for bits  5 to 12 p=1-exp(-SUM/2)= .02402
+ b-rank test for bits  6 to 13 p=1-exp(-SUM/2)= .16248
+ b-rank test for bits  7 to 14 p=1-exp(-SUM/2)= .03669
+ b-rank test for bits  8 to 15 p=1-exp(-SUM/2)= .88020
+ b-rank test for bits  9 to 16 p=1-exp(-SUM/2)= .49356
+ b-rank test for bits 10 to 17 p=1-exp(-SUM/2)= .80141
+ b-rank test for bits 11 to 18 p=1-exp(-SUM/2)= .66642
+ b-rank test for bits 12 to 19 p=1-exp(-SUM/2)= .33184
+ b-rank test for bits 13 to 20 p=1-exp(-SUM/2)= .61987
+ b-rank test for bits 14 to 21 p=1-exp(-SUM/2)= .12119
+ b-rank test for bits 15 to 22 p=1-exp(-SUM/2)= .21398
+ b-rank test for bits 16 to 23 p=1-exp(-SUM/2)= .97778
+ b-rank test for bits 17 to 24 p=1-exp(-SUM/2)= .09986
+ b-rank test for bits 18 to 25 p=1-exp(-SUM/2)= .48986
+ b-rank test for bits 19 to 26 p=1-exp(-SUM/2)= .96830
+ b-rank test for bits 20 to 27 p=1-exp(-SUM/2)= .38441
+ b-rank test for bits 21 to 28 p=1-exp(-SUM/2)= .63815
+ b-rank test for bits 22 to 29 p=1-exp(-SUM/2)= .24060
+ b-rank test for bits 23 to 30 p=1-exp(-SUM/2)= .84232
+ b-rank test for bits 24 to 31 p=1-exp(-SUM/2)= .52497
+ b-rank test for bits 25 to 32 p=1-exp(-SUM/2)= .74794
+   TEST SUMMARY, 25 tests on 100,000 random 6x8 matrices
+ These should be 25 uniform [0,1] random variables:
+     .710488     .683387     .346847     .081749     .024016
+     .162485     .036688     .880202     .493560     .801414
+     .666420     .331844     .619872     .121192     .213977
+     .977778     .099862     .489862     .968304     .384414
+     .638150     .240596     .842315     .524971     .747936
+   brank test summary for BB128.32       
+       The KS test for those 25 supposed UNI's yields
+                    KS p-value= .014742
+--------------------------------------------------------------------------------
+  No. missing words should average  141909. with sigma=428.
+ tst no  1:  142091 missing words,     .42 sigmas from mean, p-value= .66439
+ tst no  2:  142157 missing words,     .58 sigmas from mean, p-value= .71859
+ tst no  3:  141628 missing words,    -.66 sigmas from mean, p-value= .25549
+ tst no  4:  141656 missing words,    -.59 sigmas from mean, p-value= .27696
+ tst no  5:  142155 missing words,     .57 sigmas from mean, p-value= .71702
+ tst no  6:  142021 missing words,     .26 sigmas from mean, p-value= .60292
+ tst no  7:  141519 missing words,    -.91 sigmas from mean, p-value= .18089
+ tst no  8:  142403 missing words,    1.15 sigmas from mean, p-value= .87563
+ tst no  9:  142482 missing words,    1.34 sigmas from mean, p-value= .90955
+ tst no 10:  142650 missing words,    1.73 sigmas from mean, p-value= .95823
+ tst no 11:  142343 missing words,    1.01 sigmas from mean, p-value= .84453
+ tst no 12:  141760 missing words,    -.35 sigmas from mean, p-value= .36358
+ tst no 13:  141573 missing words,    -.79 sigmas from mean, p-value= .21599
+ tst no 14:  142243 missing words,     .78 sigmas from mean, p-value= .78219
+ tst no 15:  141785 missing words,    -.29 sigmas from mean, p-value= .38572
+ tst no 16:  142084 missing words,     .41 sigmas from mean, p-value= .65840
+ tst no 17:  140865 missing words,   -2.44 sigmas from mean, p-value= .00734
+ tst no 18:  142295 missing words,     .90 sigmas from mean, p-value= .81623
+ tst no 19:  142470 missing words,    1.31 sigmas from mean, p-value= .90490
+ tst no 20:  141855 missing words,    -.13 sigmas from mean, p-value= .44950
+--------------------------------------------------------------------------------
+    OPSO for BB128.32        using bits 23 to 32        141763  -.505  .3069
+    OPSO for BB128.32        using bits 22 to 31        141638  -.936  .1747
+    OPSO for BB128.32        using bits 21 to 30        141989   .275  .6082
+    OPSO for BB128.32        using bits 20 to 29        142236  1.126  .8700
+    OPSO for BB128.32        using bits 19 to 28        142298  1.340  .9099
+    OPSO for BB128.32        using bits 18 to 27        141821  -.305  .3803
+    OPSO for BB128.32        using bits 17 to 26        141685  -.774  .2196
+    OPSO for BB128.32        using bits 16 to 25        142379  1.620  .9473
+    OPSO for BB128.32        using bits 15 to 24        141878  -.108  .4570
+    OPSO for BB128.32        using bits 14 to 23        142002   .320  .6253
+    OPSO for BB128.32        using bits 13 to 22        141816  -.322  .3738
+    OPSO for BB128.32        using bits 12 to 21        141589 -1.105  .1347
+    OPSO for BB128.32        using bits 11 to 20        142007   .337  .6319
+    OPSO for BB128.32        using bits 10 to 19        141729  -.622  .2670
+    OPSO for BB128.32        using bits  9 to 18        141850  -.205  .4190
+    OPSO for BB128.32        using bits  8 to 17        141763  -.505  .3069
+    OPSO for BB128.32        using bits  7 to 16        141208 -2.418  .0078
+    OPSO for BB128.32        using bits  6 to 15        142678  2.651  .9960
+    OPSO for BB128.32        using bits  5 to 14        142228  1.099  .8641
+    OPSO for BB128.32        using bits  4 to 13        141980   .244  .5963
+    OPSO for BB128.32        using bits  3 to 12        141256 -2.253  .0121
+    OPSO for BB128.32        using bits  2 to 11        141812  -.336  .3686
+    OPSO for BB128.32        using bits  1 to 10        142459  1.895  .9710
+    OQSO for BB128.32        using bits 28 to 32        141873  -.123  .4510
+    OQSO for BB128.32        using bits 27 to 31        141553 -1.208  .1135
+    OQSO for BB128.32        using bits 26 to 30        141490 -1.421  .0776
+    OQSO for BB128.32        using bits 25 to 29        141793  -.394  .3467
+    OQSO for BB128.32        using bits 24 to 28        141792  -.398  .3454
+    OQSO for BB128.32        using bits 23 to 27        141398 -1.733  .0415
+    OQSO for BB128.32        using bits 22 to 26        141600 -1.049  .1472
+    OQSO for BB128.32        using bits 21 to 25        142196   .972  .8344
+    OQSO for BB128.32        using bits 20 to 24        142071   .548  .7082
+    OQSO for BB128.32        using bits 19 to 23        141861  -.164  .4349
+    OQSO for BB128.32        using bits 18 to 22        142000   .307  .6207
+    OQSO for BB128.32        using bits 17 to 21        141585 -1.099  .1358
+    OQSO for BB128.32        using bits 16 to 20        142209  1.016  .8451
+    OQSO for BB128.32        using bits 15 to 19        142008   .334  .6310
+    OQSO for BB128.32        using bits 14 to 18        141940   .104  .5414
+    OQSO for BB128.32        using bits 13 to 17        141601 -1.045  .1480
+    OQSO for BB128.32        using bits 12 to 16        141994   .287  .6130
+    OQSO for BB128.32        using bits 11 to 15        142016   .362  .6412
+    OQSO for BB128.32        using bits 10 to 14        142035   .426  .6649
+    OQSO for BB128.32        using bits  9 to 13        141949   .134  .5535
+    OQSO for BB128.32        using bits  8 to 12        142152   .823  .7946
+    OQSO for BB128.32        using bits  7 to 11        141495 -1.405  .0801
+    OQSO for BB128.32        using bits  6 to 10        141380 -1.794  .0364
+    OQSO for BB128.32        using bits  5 to  9        142337  1.450  .9264
+    OQSO for BB128.32        using bits  4 to  8        141983   .250  .5986
+    OQSO for BB128.32        using bits  3 to  7        141862  -.160  .4363
+    OQSO for BB128.32        using bits  2 to  6        141989   .270  .6064
+    OQSO for BB128.32        using bits  1 to  5        141882  -.093  .4631
+     DNA for BB128.32        using bits 31 to 32        142190   .828  .7961
+     DNA for BB128.32        using bits 30 to 31        141563 -1.022  .1535
+     DNA for BB128.32        using bits 29 to 30        142015   .312  .6224
+     DNA for BB128.32        using bits 28 to 29        142446  1.583  .9433
+     DNA for BB128.32        using bits 27 to 28        141835  -.219  .4132
+     DNA for BB128.32        using bits 26 to 27        141971   .182  .5722
+     DNA for BB128.32        using bits 25 to 26        141958   .144  .5571
+     DNA for BB128.32        using bits 24 to 25        141477 -1.275  .1011
+     DNA for BB128.32        using bits 23 to 24        141838  -.210  .4167
+     DNA for BB128.32        using bits 22 to 23        142027   .347  .6357
+     DNA for BB128.32        using bits 21 to 22        141996   .256  .6009
+     DNA for BB128.32        using bits 20 to 21        141361 -1.617  .0529
+     DNA for BB128.32        using bits 19 to 20        141970   .179  .5710
+     DNA for BB128.32        using bits 18 to 19        141757  -.449  .3266
+     DNA for BB128.32        using bits 17 to 18        141591  -.939  .1739
+     DNA for BB128.32        using bits 16 to 17        141868  -.122  .4515
+     DNA for BB128.32        using bits 15 to 16        141204 -2.081  .0187
+     DNA for BB128.32        using bits 14 to 15        141527 -1.128  .1297
+     DNA for BB128.32        using bits 13 to 14        141407 -1.482  .0692
+     DNA for BB128.32        using bits 12 to 13        141603  -.904  .1831
+     DNA for BB128.32        using bits 11 to 12        141960   .149  .5594
+     DNA for BB128.32        using bits 10 to 11        142248   .999  .8411
+     DNA for BB128.32        using bits  9 to 10        141362 -1.615  .0532
+     DNA for BB128.32        using bits  8 to  9        141885  -.072  .4714
+     DNA for BB128.32        using bits  7 to  8        142039   .383  .6490
+     DNA for BB128.32        using bits  6 to  7        142426  1.524  .9363
+     DNA for BB128.32        using bits  5 to  6        141683  -.668  .2522
+     DNA for BB128.32        using bits  4 to  5        141843  -.196  .4224
+     DNA for BB128.32        using bits  3 to  4        142420  1.506  .9340
+     DNA for BB128.32        using bits  2 to  3        142244   .987  .8382
+     DNA for BB128.32        using bits  1 to  2        142302  1.158  .8766
+--------------------------------------------------------------------------------
+   Test results for BB128.32       
+ Chi-square with 5^5-5^4=2500 d.of f. for sample size:2560000
+                               chisquare  equiv normal  p-value
+  Results fo COUNT-THE-1's in successive bytes:
+ byte stream for BB128.32         2540.61       .574      .717113
+ byte stream for BB128.32         2503.50       .050      .519748
+--------------------------------------------------------------------------------
+ Chi-square with 5^5-5^4=2500 d.of f. for sample size: 256000
+                      chisquare  equiv normal  p value
+  Results for COUNT-THE-1's in specified bytes:
+           bits  1 to  8  2418.90     -1.147      .125698
+           bits  2 to  9  2474.81      -.356      .360839
+           bits  3 to 10  2441.27      -.831      .203095
+           bits  4 to 11  2523.03       .326      .627679
+           bits  5 to 12  2627.61      1.805      .964436
+           bits  6 to 13  2610.30      1.560      .940599
+           bits  7 to 14  2521.62       .306      .620090
+           bits  8 to 15  2576.83      1.087      .861382
+           bits  9 to 16  2564.98       .919      .820928
+           bits 10 to 17  2542.80       .605      .727527
+           bits 11 to 18  2571.01      1.004      .842370
+           bits 12 to 19  2375.53     -1.760      .039184
+           bits 13 to 20  2454.97      -.637      .262112
+           bits 14 to 21  2515.85       .224      .588680
+           bits 15 to 22  2685.20      2.619      .995592
+           bits 16 to 23  2405.07     -1.342      .089718
+           bits 17 to 24  2617.64      1.664      .951917
+           bits 18 to 25  2563.76       .902      .816381
+           bits 19 to 26  2562.48       .884      .811544
+           bits 20 to 27  2650.78      2.132      .983514
+           bits 21 to 28  2575.04      1.061      .855695
+           bits 22 to 29  2552.00       .735      .768957
+           bits 23 to 30  2506.29       .089      .535463
+           bits 24 to 31  2542.31       .598      .725189
+           bits 25 to 32  2591.34      1.292      .901772
+--------------------------------------------------------------------------------
+           CDPARK: result of ten tests on file BB128.32       
+            Of 12,000 tries, the average no. of successes
+                 should be 3523 with sigma=21.9
+            Successes: 3524    z-score:   .046 p-value: .518210
+            Successes: 3501    z-score: -1.005 p-value: .157553
+            Successes: 3515    z-score:  -.365 p-value: .357445
+            Successes: 3520    z-score:  -.137 p-value: .445521
+            Successes: 3503    z-score:  -.913 p-value: .180558
+            Successes: 3521    z-score:  -.091 p-value: .463618
+            Successes: 3518    z-score:  -.228 p-value: .409702
+            Successes: 3485    z-score: -1.735 p-value: .041356
+            Successes: 3537    z-score:   .639 p-value: .738676
+            Successes: 3511    z-score:  -.548 p-value: .291865
+ 
+           square size   avg. no.  parked   sample sigma
+             100.            3513.500       13.629
+            KSTEST for the above 10: p=  .835810
+--------------------------------------------------------------------------------
+               This is the MINIMUM DISTANCE test
+              for random integers in the file BB128.32       
+     Sample no.    d^2     avg     equiv uni            
+           5    1.0274   1.1032     .643909
+          10     .3477   1.0994     .294952
+          15    1.8303   1.0823     .841105
+          20     .2966    .9922     .257778
+          25     .9323   1.0419     .608185
+          30     .1164    .9823     .110411
+          35     .8319    .9511     .566614
+          40     .3863    .8875     .321735
+          45     .1347    .8356     .126625
+          50    2.2260    .8397     .893237
+          55     .2135    .7973     .193116
+          60    1.6225    .8466     .804208
+          65     .7704    .8370     .538954
+          70    2.4314    .8592     .913151
+          75     .4030    .8572     .333069
+          80    2.0907    .9278     .877696
+          85     .9617    .9516     .619590
+          90     .0270    .9274     .026782
+          95     .3500    .9150     .296563
+         100     .1775    .8977     .163373
+     MINIMUM DISTANCE TEST for BB128.32       
+          Result of KS test on 20 transformed mindist^2's:
+                                  p-value= .266310
+--------------------------------------------------------------------------------
+               The 3DSPHERES test for file BB128.32       
+ sample no:  1     r^3=   5.283     p-value= .16146
+ sample no:  2     r^3=  66.806     p-value= .89214
+ sample no:  3     r^3=  71.859     p-value= .90885
+ sample no:  4     r^3=  39.980     p-value= .73623
+ sample no:  5     r^3=  67.445     p-value= .89441
+ sample no:  6     r^3=    .010     p-value= .00032
+ sample no:  7     r^3=   7.630     p-value= .22456
+ sample no:  8     r^3=  13.605     p-value= .36459
+ sample no:  9     r^3=  22.441     p-value= .52670
+ sample no: 10     r^3=  36.590     p-value= .70467
+ sample no: 11     r^3=  25.564     p-value= .57349
+ sample no: 12     r^3=  58.518     p-value= .85781
+ sample no: 13     r^3=   3.806     p-value= .11915
+ sample no: 14     r^3=   4.863     p-value= .14965
+ sample no: 15     r^3=   9.655     p-value= .27517
+ sample no: 16     r^3=   7.064     p-value= .20979
+ sample no: 17     r^3=  77.109     p-value= .92349
+ sample no: 18     r^3=  14.312     p-value= .37940
+ sample no: 19     r^3=  82.879     p-value= .93688
+ sample no: 20     r^3=   7.085     p-value= .21034
+       3DSPHERES test for file BB128.32             p-value= .508431
+--------------------------------------------------------------------------------
+            RESULTS OF SQUEEZE TEST FOR BB128.32       
+         Table of standardized frequency counts
+     ( (obs-exp)/sqrt(exp) )^2
+        for j taking values <=6,7,8,...,47,>=48:
+      .6    -1.2     -.1     -.3     2.2    -1.6
+    -1.2    -1.6     1.4      .1    -1.1     -.8
+      .1     -.9     1.3      .0      .2    -1.4
+     -.2      .5      .7    -1.1     1.6      .4
+     1.0     2.1     -.7     -.7      .7    -1.1
+      .3     -.3    -2.8      .1    -1.2     1.9
+     1.4      .2     -.4     -.1     1.6      .0
+    -1.1
+           Chi-square with 42 degrees of freedom: 53.477
+              z-score=  1.252  p-value= .889822
+______________________________________________________________
+--------------------------------------------------------------------------------
+                Test no.  1      p-value  .933272
+                Test no.  2      p-value  .196179
+                Test no.  3      p-value  .174865
+                Test no.  4      p-value  .343623
+                Test no.  5      p-value  .202756
+                Test no.  6      p-value  .875803
+                Test no.  7      p-value  .998130
+                Test no.  8      p-value  .983652
+                Test no.  9      p-value  .359784
+                Test no. 10      p-value  .140898
+   Results of the OSUM test for BB128.32       
+        KSTEST on the above 10 p-values:  .884870
+--------------------------------------------------------------------------------
+           The RUNS test for file BB128.32       
+     Up and down runs in a sample of 10000
+_________________________________________________ 
+                 Run test for BB128.32       :
+       runs up; ks test for 10 p's: .844659
+     runs down; ks test for 10 p's: .350832
+                 Run test for BB128.32       :
+       runs up; ks test for 10 p's: .873078
+     runs down; ks test for 10 p's: .812050
+--------------------------------------------------------------------------------
+                Results of craps test for BB128.32       
+  No. of wins:  Observed Expected
+                                98353    98585.86
+ Chisq=  23.61 for 20 degrees of freedom, p=  .74010
+               Throws Observed Expected  Chisq     Sum
+            SUMMARY  FOR BB128.32       
+                p-value for no. of wins: .148826
+                p-value for throws/game: .740097
+  Test completed.  File BB128.32       
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
