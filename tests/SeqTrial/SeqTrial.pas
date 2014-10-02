@@ -1,7 +1,7 @@
 {$mode delphi}
 { $define TEST}
 { $define distrib}
-{ $define SAM}
+{$define SAM}
 { $define caesar}
 { $define VERBOSE}
 PROGRAM SeqTrial;
@@ -35,6 +35,10 @@ VAR TRIALS:	QWord = 100000000;
 	seed: STRING = 'Monte Carlo Mod';
 	RNG: TRNG = B512;
 	
+{$ifdef SAM}
+	BTS: CARDINAL;
+{$endif}
+
 	i,j:   	CARDINAL;
 	q  :	QWord = 0;
 	r    : 	CARDINAL = MAXCARD-1;
@@ -138,13 +142,14 @@ FUNCTION MinP(mins,maxs: Cardinal; prob: PArray): CARDINAL;
 
 // Mean of a set of probabilities
 FUNCTION Mean(mins,maxs: CARDINAL; prob: PArray): EXTENDED;
-	VAR i: Cardinal;
+	VAR i,dv: Cardinal;
 		t: Extended;
 	BEGIN
+		dv   := maxs-mins+1;
 		t    := 0.0;
 		FOR i:=mins TO maxs DO
 			t += prob[i];
-		Mean := t / i;
+		Mean := t / dv;
 	END;
 
 // Standard deviation of a set of probabilities
@@ -213,13 +218,24 @@ FUNCTION Variance(minx,maxs: CARDINAL; prob: PArray): EXTENDED;
 
 
 {$ifdef SAM}
+// count the bits needed for a given value
+function bitCount (val: Cardinal): Cardinal; 
+    var v,c: Cardinal;
+    begin
+		v := val;
+		c := 0;
+		while (v > 0) do begin 
+			inc(c);
+			v := v shr 1;
+		end;
+		bitCount := c;
+	end;
 // Obtain a value in [0..val-1] from a pseudo-random bitstream
 //  by sampling b-bit segments as n until n is in range. 
 // < Like other alternatives to MOD, SAM exhibits a very slightly 
-//   inferior distribution over the range of possible values,
-//   and is of course far slower in execution than MOD alone. 
+//   inferior distribution over the range of possible values.
 //   Given a high quality RNG, SAM is otherwise unbiased. > 
-function Sam(ng: TRNG; val: Cardinal): Cardinal;
+function Sam(ng: TRNG; val: Cardinal): Cardinal; OVERLOAD;
 	var r,m,n,b: Cardinal;
 		i      : Longint;
 		f      : Boolean;
@@ -242,6 +258,30 @@ function Sam(ng: TRNG; val: Cardinal): Cardinal;
 		until(f);
 		Sam := n;
 	end;
+// Obtain a value in [0..val-1] from a pseudo-random bitstream
+//  by sampling b-bit segments as n until n is in range. 
+// < Like other alternatives to MOD, SAM exhibits a very slightly 
+//   inferior distribution over the range of possible values.
+//   SAM passed <val> and <bts> is around 1.1 times faster than MOD. 
+//   Given a high quality RNG, SAM is otherwise unbiased. > 
+function Sam(ng: TRNG; val,bts: Cardinal): Cardinal; OVERLOAD;
+	var r,m,n   : Cardinal;
+		i       : Longint;
+		f       : Boolean;
+	begin
+		repeat
+			r := rRandom(ng);
+			i := -bts;
+			repeat
+				i+=bts;
+				m := (1 shl bts - 1) shl i;
+				n := (r and m) shr i;
+				f := n < val;
+			until (f or (i>=(32-bts)));
+		until(f);
+		Sam := n;
+	end;
+
 {$endif}
 
 
@@ -337,6 +377,10 @@ BEGIN
 			mean:=0.0; sigm:=0.0; vari:=0.0; chis:=0.0;
 		END;
 				
+		{$ifdef SAM}
+		BTS := bitCount(MODULO);
+		{$endif}
+
 		// initiate Monte Carlo experiment
 		REPEAT
 			inc(q);
@@ -347,7 +391,7 @@ BEGIN
 			r:=Caesar(mDecipher, rRandom(RNG) mod MODULO, rRandom(RNG) mod MODULO, modulo);
 			{$else}
 			{$ifdef SAM}
-			r:=SAM(RNG,MODULO);
+			r:=SAM(RNG,MODULO,BTS);
 			{$else}
 			r:=rRandom(RNG) mod MODULO;
 			{$endif}

@@ -15,10 +15,10 @@ unit rng;
 interface
 
 // all rngs
-type TRNG = (CONG,COSWB,ISAAC,B128,B256,B512,KILFI,KISS,KISWB,LFIB4,MWC,MWSWB,SHR3,SHRSW,SWB); 
+type TRNG = (CONG,COSWB,ISAAC,B128,B256,B512,MOT8,MOT16,MOT32,KILFI,KISS,KISWB,LFIB4,MWC,MWSWB,SHR3,SHRSW,SWB); 
 	 TRNGarray = array[CONG..SWB] of string;
 
-const RNGs: TRNGarray = ('CONG','COSWB','ISAAC','BB128','BB256','BB512','KILFI','KISS','KISWB','LFIB4','MWC','MWSWB','SHR3','SHRSW','SWB'); 
+const RNGs: TRNGarray = ('CONG','COSWB','ISAAC','BB128','BB256','BB512','MOTE8','MOTE16','MOTE32','KILFI','KISS','KISWB','LFIB4','MWC','MWSWB','SHR3','SHRSW','SWB'); 
 
 var  baseRNG: TRNG = ISAAC;
 
@@ -66,7 +66,7 @@ procedure rSetBaseRNG(b:TRNG);
 
 implementation
 
-uses sysutils, myisaac, marsaglia, bb128, bb256, bb512;
+uses sysutils, myisaac, marsaglia, bb128, bb256, bb512, mote8, mote16, mote32;
 
 const 	lastRNG = cardinal(SWB);
 
@@ -101,6 +101,9 @@ begin
 		bb128.bbRandom;
 		bb256.bbRandom;
 		bb512.bbRandom;
+		mote8.moRandom;
+		mote16.moRandom;
+		mote32.moRandom;
 	end;
 end;
 
@@ -122,6 +125,9 @@ begin
 			B128:	bb128.bbRandom;
 			B256:	bb256.bbRandom;
 			B512:	bb512.bbRandom;
+			MOT8:   mote8.moRandom;
+			MOT16:  mote16.moRandom;
+			MOT32:  mote32.moRandom;
 		end;
 	end;
 end;
@@ -141,6 +147,12 @@ begin
 	bb256.bbReset;
 	//Reset bb512
 	bb512.bbReset;
+	//Reset mote8
+	mote8.moReset;
+	//Reset mote16
+	mote16.moReset;
+	//Reset mote32
+	mote32.moReset;
 end;
 
 
@@ -182,6 +194,12 @@ begin
 	bb256.bbSeedW(seed,768);
 	//Seed bb512
 	bb512.bbSeedW(seed,1536);
+	//Seed mote8
+	mote8.moSeedW(seed,8);
+	//Seed mote16
+	mote16.moSeedW(seed,16);
+	//Seed mote32
+	mote32.moSeedW(seed,32);
 	
 end;
 
@@ -253,6 +271,12 @@ begin
 		B256: bb256.bbSeedW(seed,768);
 		//Seed bb512
 		B512: bb512.bbSeedW(seed,1536);
+		//Seed mote8
+		MOT8: mote8.moSeedW(seed,8);
+		//Seed mote16
+		MOT16: mote16.moSeedW(seed,16);
+		//Seed mote32
+		MOT32: mote32.moSeedW(seed,32);
 	end;
 end;
 
@@ -283,6 +307,9 @@ begin
 		B128:	result := bb128.bbRandom;
 		B256:	result := bb256.bbRandom;
 		B512:	result := bb512.bbRandom;
+		MOT8:   result := mote8.moRandom;
+		MOT16:  result := mote16.moRandom;
+		MOT32:  result := mote32.moRandom;
 		KILFI:  result := (mKISS+mLFIB4);
 		KISS:	result := mKISS;
 		KISWB:	result := (mKISS+mSWB);

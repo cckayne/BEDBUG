@@ -1,0 +1,33 @@
+The MOTET Challenge
+-------------------
+
+You are cordially invited to try breaking the following three short MOTET encipherments. In the unlikely event you succeed, a cash prize is offered by way of remuneration. Please get in touch at the email address listed below, giving details of your decryption(s). To receive the money, a PayPal account will be required.
+
+
+1) MOTE8  (w/BB512 hash/ksa)
+
+YXEQYRGWHCYLRPOJHCDUZKHZRVZOVTJLPUNQJUDUDXZVLLQOLDIATIPLAFMMBYLOZFLKLTJVH
+
+>motet "message" "key" e m a 4
+
+
+2) MOTE16 (w/BB512 hash/ksa)
+
+NDEEWLTHJQMENRPGYQAWOQZGBQJBEMRLFPQXAPPQJWXRJSIUTJSOWPKNOHNPOSYFQ
+
+>motet "message" "key" e m a 5
+
+
+3) MOTE32 (w/BB512 hash/ksa)
+
+OQVFNXFSSOOBWLFJOEJWCFDJOHKGKODZRMIPWEIUTNPAKVFXRCSPXWUENKTHHCXES
+
+>motet "message" "key" e m a 6
+
+
+The "message" in each case is a simple phrase in a widely spoken language and the "key", while not randomly generated or over-long, has a high entropy.
+
+
+Bonne chance!
+C.C.Kayne
+cckayne@gmail.com

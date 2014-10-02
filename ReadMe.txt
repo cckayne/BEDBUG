@@ -6,7 +6,7 @@
 
 What is BEDBUG?
 
-BEDBUG is a small, fast, cryptographically secure pseudo-random number generator (CSPRNG) and stream cipher. It exhibits uniform distribution, mixes rapidly (with worst-case avalanche better than 16-bits), has no detected bias, and comes in three variants: BEDBUG128, with an internal state array of 128+3 32-bit words; BEDBUG256, with an internal state array of 256+3 32-bit words; and BEDBUG512 with a 512+3-word state. The former permit seeding with a key of up to 512 or 1024 bits, the latter with a 2048-bit key.
+BEDBUG is a small, fast, cryptographically secure pseudo-random number generator (CSPRNG) and stream cipher. It exhibits uniform distribution, mixes rapidly (with worst-case avalanche better than 16-bits), has no detected bias, and comes in three variants: BEDBUG128, with an internal state array of 128+3 32-bit words; BEDBUG256, with an internal state of 256+3 words; and BEDBUG512 with a 512+3-word state. The former permit seeding with a key of up to 512 or 1024 bits, the latter with a 2048-bit key.
 
 The BEDBUG generator itself is a mere 5 lines of code:
 

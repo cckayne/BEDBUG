@@ -133,13 +133,14 @@ FUNCTION MinP(mins,maxs: Cardinal; prob: PArray): CARDINAL;
 
 // Mean of a set of probabilities
 FUNCTION Mean(mins,maxs: CARDINAL; prob: PArray): EXTENDED;
-	VAR i: Cardinal;
+	VAR i,dv: Cardinal;
 		t: Extended;
 	BEGIN
+		dv   := maxs-mins+1;
 		t    := 0.0;
 		FOR i:=mins TO maxs DO
 			t += prob[i];
-		Mean := t / i;
+		Mean := t / dv;
 	END;
 
 // Standard deviation of a set of probabilities

@@ -16,7 +16,7 @@ PROGRAM ModTrial;
   All command line parameters are optional.
   Default modulus: 26.
 }
-USES rng, MyStrUtils, SysUtils, Math;
+USES rng, MyStrUtils, SysUtils, Math, HRTimer;
 
 TYPE PArray = ARRAY Of EXTENDED;
 	 SArray = ARRAY Of STRING;
@@ -52,20 +52,23 @@ VAR TRIALS:	QWord = 100000000;
 	medpidx : CARDINAL;
 	medval  : STRING;
 	
-	totals: ARRAY of QWord;
-	values: ARRAY of STRING;
+	totals: QArray;
+	values: SArray;
 	probability: PArray;
 	probsorted : PArray;
 	expect:		 PArray;
 	probtot: EXTENDED = 0.0;
 
-	max: CARDINAL=0;
-	min: CARDINAL=MAXINT;
 	vexp,vact: EXTENDED;
-	oddv, evenv: CARDINAL;
 	i,j,r: CARDINAL;
 	q:	   QWord = 0;
-
+{$ifdef SAM}
+	BTS: CARDINAL;
+{$endif}
+	t: THRTimer;
+	sec: Extended;
+	
+	
 // sort an array (ascending) using the selection-sort algorithm
 PROCEDURE SelectionSort(mins,maxs: CARDINAL; VAR sArr: PArray);
     VAR current, j : Cardinal;
@@ -134,37 +137,40 @@ FUNCTION MinP(mins,maxs: Cardinal; prob: PArray): CARDINAL;
 	
 // Mean of a set of 64-bit outcomes
 FUNCTION Mean(mins,maxs: CARDINAL; prob: QArray): EXTENDED; OVERLOAD;
-	VAR i: Cardinal;
+	VAR i,dv: Cardinal;
 		t: Extended;
 	BEGIN
+		dv   := maxs-mins+1;
 		t    := 0.0;
 		FOR i:=mins TO maxs DO
 			t += prob[i];
-		Mean := t / i;
+		Mean := t / dv;
 	END;
 
 	
 // Mean of a set of 32-bit outcomes
 FUNCTION Mean(mins,maxs: CARDINAL; prob: CArray): EXTENDED; OVERLOAD;
-	VAR i: Cardinal;
+	VAR i,dv: Cardinal;
 		t: Extended;
 	BEGIN
+		dv	 := maxs-mins+1;
 		t    := 0.0;
 		FOR i:=mins TO maxs DO
 			t += prob[i];
-		Mean := t / i;
+		Mean := t / dv;
 	END;
 
 	
 // Mean of a set of probabilities
 FUNCTION Mean(mins,maxs: CARDINAL; prob: PArray): EXTENDED; OVERLOAD;
-	VAR i: Cardinal;
+	VAR i,dv: Cardinal;
 		t: Extended;
 	BEGIN
+		dv   := maxs-mins+1;
 		t    := 0.0;
 		FOR i:=mins TO maxs DO
 			t += prob[i];
-		Mean := t / i;
+		Mean := t / dv;
 	END;
 
 
@@ -227,14 +233,15 @@ FUNCTION ChiSquare(minx,maxs: CARDINAL; prob: CArray; norm: BOOLEAN): EXTENDED; 
 
 // chi-square of a set of probabilities
 FUNCTION ChiSquare(minx,maxs: CARDINAL; prob: PArray; norm: BOOLEAN): EXTENDED; OVERLOAD;
-	VAR i,dof: Cardinal;
+	VAR i,dv,dof: Cardinal;
 		m,chi: Extended;
 	BEGIN
 		chi := 0.0;
+		dv  := maxs-minx+1;
 		// m-1 degrees of freedom
 		dof := maxs-minx;
 		// expected mean
-		m := 1/maxs;
+		m := 1/dv;
 		FOR i := minx TO maxs DO
 			chi += ((prob[i]-m)**2)/m;
 		ChiSquare:=chi;
@@ -268,13 +275,24 @@ FUNCTION VarianceP(minx,maxs: CARDINAL; prob: PArray): EXTENDED;
 
 	
 {$ifdef SAM}
+// count the bits needed for a given value
+function bitCount (val: Cardinal): Cardinal; 
+    var v,c: Cardinal;
+    begin
+		v := val;
+		c := 0;
+		while (v > 0) do begin 
+			inc(c);
+			v := v shr 1;
+		end;
+		bitCount := c;
+	end;
 // Obtain a value in [0..val-1] from a pseudo-random bitstream
 //  by sampling b-bit segments as n until n is in range. 
 // < Like other alternatives to MOD, SAM exhibits a very slightly 
-//   inferior distribution over the range of possible values,
-//   and is of course far slower in execution than MOD alone. 
+//   inferior distribution over the range of possible values.
 //   Given a high quality RNG, SAM is otherwise unbiased. > 
-function Sam(ng: TRNG; val: Cardinal): Cardinal;
+function Sam(ng: TRNG; val: Cardinal): Cardinal; OVERLOAD;
 	var r,m,n,b: Cardinal;
 		i      : Longint;
 		f      : Boolean;
@@ -297,6 +315,30 @@ function Sam(ng: TRNG; val: Cardinal): Cardinal;
 		until(f);
 		Sam := n;
 	end;
+// Obtain a value in [0..val-1] from a pseudo-random bitstream
+//  by sampling b-bit segments as n until n is in range. 
+// < Like other alternatives to MOD, SAM exhibits a very slightly 
+//   inferior distribution over the range of possible values.
+//   SAM passed <val> and <bts> is around 1.1 times faster than MOD. 
+//   Given a high quality RNG, SAM is otherwise unbiased. > 
+function Sam(ng: TRNG; val,bts: Cardinal): Cardinal; OVERLOAD;
+	var r,m,n   : Cardinal;
+		i       : Longint;
+		f       : Boolean;
+	begin
+		repeat
+			r := rRandom(ng);
+			i := -bts;
+			repeat
+				i+=bts;
+				m := (1 shl bts - 1) shl i;
+				n := (r and m) shr i;
+				f := n < val;
+			until (f or (i>=(32-bts)));
+		until(f);
+		Sam := n;
+	end;
+
 {$endif}
 
 
@@ -384,8 +426,12 @@ BEGIN
 		// zeroize totals array
 		FOR i:=0 TO MODM1 DO
 			totals[i]:=0;
-		oddv:=0; evenv:=0;
+
+		{$ifdef SAM}
+		BTS := bitCount(MODULO);
+		{$endif}
 		
+		starttimer(t);
 		// initiate Monte Carlo experiment
 		REPEAT
 			inc(q);
@@ -394,23 +440,23 @@ BEGIN
 			r:=Caesar(mDecipher, rRandom(RNG) mod MODULO, rRandom(RNG) mod MODULO, modulo);
 			{$else}
 			{$ifdef SAM}
-			r:=SAM(RNG,MODULO);
+			r:=Sam(RNG,MODULO,BTS);
 			{$else}
 			r:=rRandom(RNG) mod MODULO;
 			{$endif}
 			{$endif}
-			if odd(r) then inc(oddv) else inc(evenv);
-			// Tally maximum and minimum outcomes
-			IF (r>max) THEN max:=r;
-			IF (r<min) THEN min:=r;
 			// Tally the total for each outcome
 			INC(totals[r]);
+			{$ifdef VERBOSE}
 			// show that we haven't expired...
-			IF q mod 5000000  = 0 THEN Write('.');
+			IF q mod 5000000 = 0 THEN Write('.');
+			{$endif}
 		UNTIL (q=TRIALS);
 		
+		sec := ReadSeconds(t);
+		
 		Writeln;
-		Writeln('Experiment ends.');
+		Writeln('Experiment ends. (',(sec/60):5:3,' min)');
 
 		// Calculate & display each value's outcomes & probability
 		{$ifdef VERBOSE}
@@ -441,11 +487,6 @@ BEGIN
 		{$endif}
 		// DISPLAY THE TRIAL'S RESULTS
 		Writeln;
-		Writeln('Min  value = ',min);
-		Writeln('Max  value = ',max);
-		Writeln('Odd  value = ',oddv/TRIALS:1:2);
-		Writeln('Even value = ',evenv/TRIALS:1:2);
-		Writeln;
 		minpidx := MinP(minscore,maxscore,probability);
 		maxpidx := MaxP(minscore,maxscore,probability);
 		medpidx := MedianP(minscore,maxscore,probability,probsorted);
@@ -455,13 +496,14 @@ BEGIN
 		Writeln('Min  probability (',values[minpidx]:2,')   =  ',probability[minpidx]:MA:DP);
 		Writeln('Med  probability (',medval:2,')   =  ',probsorted[medpidx]:MA:DP);
 		Writeln('Max  probability (',values[maxpidx]:2,')   =  ',probability[maxpidx]:MA:DP);
-		Writeln('Max-Min probability     =  ',probability[maxpidx]-probability[minpidx]:MA:DP);
+		Writeln('Range (Max-Min P)       =  ',probability[maxpidx]-probability[minpidx]:MA:DP);
+		Writeln('Mean     (expect)       =  ',Mean(minscore,maxscore,expect):MA:DP);
 		Writeln('Mean     (actual)       =  ',Mean(minscore,maxscore,probability):MA:DP);
 		Writeln('Sigma    (expect)       =  ',Sigma(minscore,maxscore,expect):MA:DP);
 		Writeln('Sigma    (actual)       =  ',Sigma(minscore,maxscore,probability):MA:DP);
+		Writeln('Variance (expect) *10E4 =  ',(10000*vexp):MA:DP);
+		Writeln('Variance (actual) *10E4 =  ',(10000*vact):MA:DP);
 		Writeln('Chi-square              =  ',ChiSquare(minscore,maxscore,probability,TRUE):MA:DP);
-		Writeln('Variance (expect)       =  ',vexp:MA:DP);
-		Writeln('Variance (actual)       =  ',vact:MA:DP);
 		
 		{$ifdef VERBOSE}
 		Writeln;

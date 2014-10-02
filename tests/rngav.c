@@ -16,36 +16,122 @@
 typedef  unsigned char      u1;
 typedef  unsigned long      u4;
 
-// BEDBUG defines
+// RNG defines
+//#define MOTE
+//#define MITE
+#define BEDBUG
+//#define FLEA
+
+#ifdef MOTE
+	#define NAME "MOTE"
+#endif
+#ifdef MITE
+	#define NAME "MITE"
+#endif
+#ifdef BEDBUG
+	#define NAME "BEDBUG"
+#endif
+#ifdef FLEA
+	#define NAME "FLEA"
+#endif
+
+
 #define BUCKETS 128
 #define LOGLEN  16
-#define CUTOFF  17.0 // 17.0 for 128 byte state; 16.6 for 256 byte state; 16.4 for 512 byte
-#define STATESIZE 128
-#define STM1 STATESIZE-1
+/* 18.25 for MITE32; 17.5 for MITE64; 17.0 for MITE128; 19.0 for MITE16; 20.4 for MITE8; 17.0 for BB128; 16.6 for BB256; 16.4 for BB512 */
+#define CUTOFF 20.0 
+#define STSZ 8
+#define STM1 STSZ-1
+/* 2**32/phi, where phi is the golden ratio */
+#define GOLDEN   0x9e3779b9
+#define FLEASEED 0xf1ea5eed
+#define NOT
 #define B
 
-typedef struct ranctx { u4 state[STATESIZE]; u4 rsl[STATESIZE]; u4 a; u4 b; u4 c; u4 d;} ranctx;
+typedef struct ranctx { u4 state[STSZ]; u4 rsl[STSZ]; u4 a; u4 b; u4 c; u4 d; u4 e;} ranctx;
 
 #define rot(x,k) ((x<<(k))|(x>>(32-(k))))
 
 static u4 iii, jjj, kkk;
 
-u4 rcnt=0; fcount=0; icount=0;
+static u4 rcnt=0; static u4 fcount=0; static u4 icount=0;
 
+#ifdef MOTE
+static u4 ranval(ranctx *x) {
+	register u4 i,r;
+	r = x->rsl[rcnt];
+	++rcnt; ++fcount;
+	if (rcnt==STSZ) {
+		for (i=0; i<STSZ; i++) {
+			#ifdef NOT
+			x->state[x->c & STM1] = ~x->e;
+			#else
+			x->state[x->c & STM1] = x->e;
+			#endif
+			x->b = x->c ^ ((x->e>>iii) | (x->d<<jjj));
+			x->c = x->d - rot(x->b,kkk);
+			x->d = x->state[i] + x->b;
+			x->e = x->c + x->d;
+			x->rsl[i] = x->c;
+		}
+		rcnt = 0;
+	}
+	return r;
+}
+static void raninit(ranctx *x, u4 seed) {
+	register u4 i,r;
+	icount++;
+	x->b = x->c = x->d = x->e = FLEASEED;
+	for (i=0; i<STSZ; i++) { x->state[i]=GOLDEN; x->rsl[i]=0; }
+	x->state[0] = seed;
+	// init with u4 seed
+	for (i=0; i<20; i++) r = ranval(x);
+}
+#endif
+#ifdef MITE
+static u4 ranval(ranctx *x) {
+	register u4 i,r;
+	r = x->rsl[rcnt];
+	++rcnt; ++fcount;
+	if (rcnt==STSZ) {
+		for (i=0; i<STSZ; i++) {
+			x->state[x->c & STM1] = x->b + x->d;
+			x->a = x->b - x->c;
+			x->b = x->c ^ (rot(x->e,iii) | rot(x->a,jjj));
+			x->c = x->d - rot(x->b,kkk);
+			x->d = x->state[x->c & STM1] + x->b;
+			x->e = x->c + x->d;
+			x->rsl[i] = x->e;
+		}
+		rcnt = 0;
+	}
+	return r;
+}
+static void raninit(ranctx *x, u4 seed) {
+	register u4 i,r;
+	icount++;
+	x->d = seed;
+	x->a = x->b = x->c = x->e = FLEASEED;
+	for (i=0; i<STSZ; i++) { x->state[i]=GOLDEN; x->rsl[i]=0; }
+	// init with u4 seed
+	for (i=0; i<20; i++) r = ranval(x);
+}
+#endif
+#ifdef BEDBUG
 u4 ranval( ranctx *x) {
     register u4 i,r;
 		r = x->rsl[rcnt];
 		++rcnt; ++fcount;
-		if (rcnt==STATESIZE) {
-			for (i=0; i<STATESIZE; i++) {
-				u4 e = x->state[x->d & STM1] - rot(x->b, iii);
+		if (rcnt==STSZ) {
+			for (i=0; i<STSZ; i++) {
+				x->e = x->state[x->d & STM1] - rot(x->b, iii);
 				x->state[x->d & STM1] = x->b ^ rot(x->c, jjj);
 				x->b = x->c + rot(x->d, kkk);
-				x->c = x->d + e;
+				x->c = x->d + x->e;
 				#ifdef B
-				x->d = e + x->state[x->b & STM1];
+				x->d = x->e + x->state[x->b & STM1];
 				#else
-				x->d = e + x->state[i];
+				x->d = x->e + x->state[i];
 				#endif
 				x->a = x->d;
 				x->rsl[i] = x->d;
@@ -54,12 +140,42 @@ u4 ranval( ranctx *x) {
 		}
 		return r;
 }
-
 static u4 raninit(ranctx *x, u4 seed ) {
 	register u4 i,r;
 	icount++;
-	x->a = x->b = x->c = x->d = 0x9e3779b9;	// the golden ratio
-	for (i=0; i<STATESIZE; i++) {
+	x->a = x->b = x->c = x->d = x->e = 0x9e3779b9;	// the golden ratio
+	for (i=0; i<STSZ; i++) {
+		x->state[i] = 0x9e3779b9; x->rsl[i] = 0;
+	}
+	// init with u4 seed
+	x->state[0]=seed;
+	for (i=0; i<20; i++) r = ranval(x);
+	return r;
+}
+#endif
+#ifdef FLEA
+static u4 ranval(ranctx *x) {
+	register u4 i,r;
+	r = x->rsl[rcnt];
+	++rcnt; ++fcount;
+	if (rcnt==STSZ) {
+	for (i=0; i<STSZ; ++i) {
+        x->e = x->state[x->d & STM1];
+        x->state[x->d & STM1] = x->b;
+        x->b = (x->c<<iii) + (x->c>>jjj) + x->d;
+        x->c = x->d ^ x->state[i];
+        x->d = x->e + x->b;
+		x->rsl[i]=x->c;
+		}
+	rcnt=0;
+	}
+	return r;
+}
+static u4 raninit(ranctx *x, u4 seed) {
+	register u4 i,r;
+	icount++;
+	x->b = x->c = x->d = x->e = 0x9e3779b9;	// the golden ratio
+	for (i=0; i<256; i++) {
 		x->state[i] = 0x9e3779b9; x->rsl[i] = 0;
 	}
 	// init with u4 seed
@@ -68,6 +184,7 @@ static u4 raninit(ranctx *x, u4 seed ) {
 	return r;
 }
 
+#endif
 
 /* count how many bits are set in a 32-bit integer, returns 0..32 */
 static u4 count(u4 x)
@@ -142,7 +259,7 @@ static int report( u4 *data, u4 *data2, u4 length, int print)
   worst /= length;
   if (worst > CUTOFF) {
     if (print) {
-      printf("iii=%2d jjj=%2d kkk=%2d worst=%14.4f\n", 
+      printf("%2d, %2d, %2d, // avalanche: %2.2f bits (worst case)\n", 
 	     iii, jjj, kkk, (float)worst);
     }
     return 1;
@@ -173,6 +290,8 @@ int main( int argc, char **argv)
 {
   u4 i, j, k;
   time_t a,z;
+
+  printf("Testing %s w/ STATESIZE %d ...\n\n",NAME,STSZ);
   
   time(&a);
 
@@ -189,7 +308,8 @@ int main( int argc, char **argv)
 
   time(&z);
 
-  printf("number of seconds      : %6d\n", (size_t)(z-a));
+  puts("");
+  printf("number of seconds      : %12d\n", (size_t)(z-a));
   printf("number of ranval calls : %12u\n", fcount);
   printf("number of raninit calls: %12u\n", icount);
 }

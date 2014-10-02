@@ -9,7 +9,7 @@ Run chi-square tests on a random number generator rng_test().
   gap -- are the gaps between values of the expected lengths
   run -- how long are strictly increasing subsequences
   mau -- for each value, multiply lengths of all the gaps
-	occ -- occurance test, in a sample of OSIZE values, how many values
+	occ -- occurrence test, in a sample of OSIZE values, how many values
 				 occur exactly i times
 Run each test on a number of different types of values
 	norm - the values produced by the rng
@@ -54,7 +54,7 @@ Constants for controlling all the tests
 #define USIZE ((u4)1<<OMICRON)              /* # values in uni test */
 #define GSIZE (SIZE<<3)                     /* # values in gap test */
 #define RSIZE ((u4)8)             /* maximum run length to look for */
-#define OSIZE (SIZE<<1)            /* sample size in occurance test */
+#define OSIZE (SIZE<<1)            /* sample size in occurrence test */
 #define MASK  (SIZE-1)         /* x&MASK is a valid index into mm[] */
 #define WMASK (WSIZE-1)  /* y&WMASK is a valid internal state value */
 #define UMASK (USIZE-1)                /* z&UMASK is a valid result */
@@ -253,7 +253,7 @@ testdef testlist[] = {
   { RSIZE, "run", test_init, test_run, test_wrap},
 #define TESTMAU 3   /* product of gaps for each value */
   { USIZE, "mau", test_mini, test_mau, test_mwra},
-#define TESTOCC 4   /* occurance test, how many values occur n times */
+#define TESTOCC 4   /* occurrence test, how many values occur n times */
   { OSIZE, "occ", test_init, test_occ, test_wrap},
 #define TESTLAST 5  /* number of tests */
 };
