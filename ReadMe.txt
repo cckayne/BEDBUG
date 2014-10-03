@@ -1,6 +1,6 @@
     BEDBUG - A family of FLEA-inspired CSPRNGs and Stream Ciphers
     BEDBUG is a BEDBUG with a 128-word, 256-word or 512-word internal state array
-    BEDBUG may be seeded with a 512-bit, a 1024-bit or a 2048-bit key
+    BEDBUG may be seeded with a 4096-bit, an 8192-bit or a 16384-bit key
     BEDBUG is Copyright C.C.Kayne 2014, GNU GPL V.3, cckayne@gmail.com
     BEDBUG is based on FLEA and other PRNG insights by Bob Jenkins. Public Domain.
 
@@ -49,15 +49,16 @@ PRNG tests passed by BEDBUG:
 
 * NIST suite of statistical tests for randomness: all tests for all seeds
 * George Marsaglia's DIEHARD suite: all tests for all seeds
-* Bob Jenkins' countx for sub-sequences of length 3-11
-* Bob Jenkins' rngav (avalanche better than 16.5 bits average)
+* Bob Jenkins' countx for sub-sequences of length 2-12 (2**35 trials)
+* Bob Jenkins' rngav (avalanche better than 20.0 bits average)
 * John Walker's ENT test for entropy
 * C.C.Kayne's GapTrial (value-spacings normal over all modulos)
 * C.C.Kayne's ModTrial (value-distributions uniform over all modulos)
 * C.C.Kayne's SeqTrial (same-value sequences normal over all modulos)
+* C.C.Kayne's PopTrial (bit-populations iid-normal over all trial ranges)
 * C.C.Kayne's Visual 1 & 2
 
-(Please view the Results.txt files in the relevant folders or verify the recorded results by re-running the tests themselves.)
+(Please view the Results.txt files in the relevant folders or verify the recorded results by re-running the tests themselves. The principal BEDBUG repositories are listed at the foot of this document.)
 
 
 Why BEDBUG?

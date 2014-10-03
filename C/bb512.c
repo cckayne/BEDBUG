@@ -1,6 +1,6 @@
 /*  BEDBUG512 - A FLEA-inspired CSPRNG and Stream Cipher
     BEDBUG512 is a BEDBUG with a 512-byte internal state array
-    BEDBUG512 may be seeded with a 2048-bit key
+    BEDBUG512 may be seeded with a 16384-bit key
     BEDBUG512 Copyright C.C.Kayne 2014, GNU GPL V.3, cckayne@gmail.com
     BEDBUG512 is based on FLEA and other PRNG insights by Bob Jenkins. Public Domain.
 */

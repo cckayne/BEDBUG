@@ -1,6 +1,6 @@
 /*  BEDBUG256 - A FLEA-inspired CSPRNG and Stream Cipher
     BEDBUG256 is a BEDBUG with a 256-byte internal state array
-    BEDBUG256 may be seeded with a 1024-bit key
+    BEDBUG256 may be seeded with a 8192-bit key
     BEDBUG256 Copyright C.C.Kayne 2014, GNU GPL V.3, cckayne@gmail.com
     BEDBUG256 is based on FLEA and other PRNG insights by Bob Jenkins. Public Domain.
 */
