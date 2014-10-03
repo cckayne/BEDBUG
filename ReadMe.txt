@@ -50,7 +50,7 @@ PRNG tests passed by BEDBUG:
 * NIST suite of statistical tests for randomness: all tests for all seeds
 * George Marsaglia's DIEHARD suite: all tests for all seeds
 * Bob Jenkins' countx for sub-sequences of length 2-12 (2**35 trials)
-* Bob Jenkins' rngav (avalanche better than 20.0 bits average)
+* Bob Jenkins' rngav (avalanche better than 17.0 bits average)
 * John Walker's ENT test for entropy
 * C.C.Kayne's GapTrial (value-spacings normal over all modulos)
 * C.C.Kayne's ModTrial (value-distributions uniform over all modulos)
