@@ -1,4 +1,4 @@
-// motet - The MOTET Stream Cipher & Scrambler in C
+// motet.c - The MOTET Stream Cipher & Scrambler in C
 // MOTET  Copyright C.C.Kayne 2014, GNU GPL V.3, cckayne@gmail.com  
 
 #include <stdio.h>
@@ -13,6 +13,7 @@
 #include "iscutils.h"
 #include "scrambler.h"
 
+//#define NEVER
 //#define MOTE-REPO
 #define BB-REPO
 //#define LOG
@@ -74,7 +75,9 @@ int options(void)
 		puts("[d] cipher mode: Decrypt");
 		puts("[c] cipher type: Caesar/MOD");
 		puts("[m] cipher type: Caesar/MIX");
+		#ifdef NEVER
 		puts("[v] cipher type: Vernam/XOR");
+		#endif
 		puts("[a] output form: ASCII A-Z");
 		puts("[h] output form: Hexadecimal");
 		printf("\n");
@@ -116,12 +119,12 @@ int main(int argc, char *argv[])
 	enum CSPRNG hasher = MOTE32;	
 	#else
 	enum CSPRNG rng = MOTE32;
-	enum CSPRNG hasher = ISAAC;
+	enum CSPRNG hasher = BB512;
 	#endif
 	#endif
 	enum ciphermode cmode   = cmNone;
 	enum ciphertype ctype	= ctNone;
-	enum outputform oform	= ofHEX;
+	enum outputform oform	= ofASC;
 	// input: message & key-phrase
 	char msg[MAXM] = ""; 
 	char key[MAXM] = "";
@@ -141,8 +144,10 @@ int main(int argc, char *argv[])
 			if ((strcmp(argv[3],"e")==0) || (strcmp(argv[3],"E")==0)) 
 				 cmode = cmEncipher; else cmode = cmNone;
 		if (argc>=5)
+			#ifdef NEVER
 			if ((strcmp(argv[4],"v")==0) || (strcmp(argv[4],"V")==0))
 				 ctype = ctVernam; else
+			#endif
 			if ((strcmp(argv[4],"c")==0) || (strcmp(argv[4],"C")==0))
 				 ctype = ctCaesar; else
 			if ((strcmp(argv[4],"m")==0) || (strcmp(argv[4],"M")==0)) 
@@ -216,7 +221,9 @@ int main(int argc, char *argv[])
 			if (oform==ofASC) log_add("MSG",msg);
 			#endif
 		// Encrypt: Vernam XOR
+		#ifdef NEVER
 		if (ctype==ctVernam)  strcpy(ctx, Vernam(rng,msg));
+		#endif
 		// Encrypt: Caesar MOD
 		if (ctype==ctCaesar)  strcpy(ctx, rCaesarStr(rng, cmEncipher, msg, MOD, START));
 		// Encrypt: Caesar MIX
@@ -304,7 +311,7 @@ int main(int argc, char *argv[])
 		
 		// belt'n'braces memory wipe
 		if (TRUE) {
-			rResetAll();
+			rResetAll(); rResetAll();
 			memset(msg,0,sizeof(msg));memset(msg,0xFF,sizeof(msg));memset(msg,0,sizeof(msg));
 			memset(key,0,sizeof(key));memset(key,0xFF,sizeof(key));memset(key,0,sizeof(key));
 			memset(kdf,0,sizeof(kdf));memset(kdf,0xFF,sizeof(kdf));memset(kdf,0,sizeof(kdf));

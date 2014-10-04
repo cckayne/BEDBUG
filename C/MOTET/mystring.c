@@ -102,7 +102,7 @@ char* ascii2hex(char *astr)
 		char h[MAXM], t[4];
 		memset(h,'\0',l+1);
         for (i = 0; i < l; i++) {
-            sprintf(t, "%02X", astr[i]);
+            sprintf(t, "%02X", astr[i] & 0xFF);
 			strcat(h,t);
         }
 		return h;

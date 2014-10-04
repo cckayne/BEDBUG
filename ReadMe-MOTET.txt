@@ -7,7 +7,7 @@ It is free software: You are welcome to redistribute it.
 Usage  : >motet <msg> <key> <cipher mode> <cipher type> <output> <csprng>
 Example: >motet "my message" "my strong key" e m a 4
 (Encrypt "my message" on key "my strong key" with Caesar/MIX using MOTE8)
-CSPRNGs: ISAAC(0) BB128(1) BB256(2) BB512(3) MOTE8(4) MOTE16(5) MOTE32(6)
+CSPRNG : ISAAC(0) BB128(1) BB256(2) BB512(3) MOTE8(4) MOTE16(5) MOTE32(6)
 Maximum message length: 20480 B; maximum key length: 2047 B.
 Minimum message length:     2 B; minimum key length:    8 B.
 
@@ -15,7 +15,6 @@ Minimum message length:     2 B; minimum key length:    8 B.
 [d] cipher mode: Decrypt
 [c] cipher type: Caesar/MOD
 [m] cipher type: Caesar/MIX
-[v] cipher type: Vernam/XOR
 [a] output form: ASCII A-Z
 [h] output form: Hexadecimal
 
@@ -27,7 +26,7 @@ What is MOTET?
 
 MOTET is a tiny, fast super-encipherment application written in C, featuring the new CSPRNG/stream ciphers MOTE and BEDBUG in each of their three variants, as well as the "gold standard" among ciphers, ISAAC. 
 
-MOTET brings multiple levels of encryption, including a ciphertext-hash, a Vigenere mixing function, a choice of Vernam, Caesar MOD, or Caesar MIX ciphering on the primary key-stream, plus a deeply scrambled "outer shell" as a final super-encryption stage. A unique nonce IV guarantees that each ciphertext will differ radically from every other, even on the same message and identical key.
+MOTET brings multiple levels of encryption, including a ciphertext-hash, a Vigenere mixing function, a choice of Caesar MOD or Caesar MIX ciphering on the primary key-stream, plus a deeply scrambled "outer shell" as a final super-encryption stage. A unique nonce IV guarantees that each ciphertext will differ radically from every other, even on the same message and identical key.
 
 
 Why MOTET?
@@ -45,7 +44,7 @@ However, "more than good enough" justly describes MOTET, if only because it is b
 
 I think you'll find that MOTET confirms how _easy_ truly strong cryptography is to implement, while avoiding all those NIST/academic chestnuts with their NSA backdoors.
 
-Please note that the nonce-scrambling and Vigenere mixing that tops off MOTET's cipher sequence is only available with MOD 26 ASCII output. MOD 95 hexadecimal and Vernam will do key-scheduling but will omit the signature SES super-encryption. So if you desire the diffusion and unique-ciphertext feature of SES when using MOTET, please make sure to set the "a" option with either "c" (Caesar/MOD) or "m" (Caesar/MIX).
+Please note that the nonce-scrambling and Vigenere mixing that tops off MOTET's cipher sequence is only available with MOD 26 ASCII output. MOD 95 hexadecimal will do key-scheduling but will omit the signature SES super-encryption. So if you desire the diffusion and unique-ciphertext feature of SES when using MOTET, please make sure to set the "a" option with either "c" (Caesar/MOD) or "m" (Caesar/MIX).
 
 Encipherment example:
 
