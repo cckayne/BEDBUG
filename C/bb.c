@@ -6,7 +6,7 @@
 #define ROUNDS 7
 
 int main(int argc, char *argv[]) {
-	char seed[1024]="Bacon";
+	char seed[2048]="Bacon";
 	// pull a seed from the command line
 	if (argc>=2) strcpy(seed,argv[1]);
 	// seed BEDBUG and mix
