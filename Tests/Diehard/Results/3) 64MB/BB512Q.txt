@@ -1,0 +1,333 @@
+ BIRTHDAY SPACINGS TEST, M= 512 N=2**24 LAMBDA=  2.0000
+           BB512.32        using bits  1 to 24 p-value=  .163618
+           BB512.32        using bits  2 to 25 p-value=  .721018
+           BB512.32        using bits  3 to 26 p-value=  .857237
+           BB512.32        using bits  4 to 27 p-value=  .985030
+           BB512.32        using bits  5 to 28 p-value=  .664068
+           BB512.32        using bits  6 to 29 p-value=  .119934
+           BB512.32        using bits  7 to 30 p-value=  .792437
+           BB512.32        using bits  8 to 31 p-value=  .921911
+           BB512.32        using bits  9 to 32 p-value=  .740219
+   The 9 p-values were
+        .163618   .721018   .857237   .985030   .664068
+        .119934   .792437   .921911   .740219
+  A KSTEST for the 9 p-values yields  .900726
+--------------------------------------------------------------------------------
+           OPERM5 test for file BB512.32       
+ chisquare for 99 degrees of freedom= 97.463; p-value= .475115
+           OPERM5 test for file BB512.32       
+ chisquare for 99 degrees of freedom= 92.828; p-value= .344323
+--------------------------------------------------------------------------------
+    Binary rank test for BB512.32       
+         Rank test for 31x31 binary matrices:
+        rows from leftmost 31 bits of each 32-bit integer
+      rank   observed  expected (o-e)^2/e  sum
+        28       187     211.4  2.820192    2.820
+        29      5091    5134.0   .360319    3.181
+        30     23207   23103.0   .467741    3.648
+        31     11515   11551.5   .115485    3.764
+  chisquare= 3.764 for 3 d. of f.; p-value= .738056
+    Binary rank test for BB512.32       
+         Rank test for 32x32 binary matrices:
+        rows from leftmost 32 bits of each 32-bit integer
+      rank   observed  expected (o-e)^2/e  sum
+        29       192     211.4  1.783478    1.783
+        30      5094    5134.0   .311807    2.095
+        31     23208   23103.0   .476784    2.572
+        32     11506   11551.5   .179411    2.751
+  chisquare= 2.751 for 3 d. of f.; p-value= .617033
+--------------------------------------------------------------------------------
+ b-rank test for bits  1 to  8 p=1-exp(-SUM/2)= .62193
+ b-rank test for bits  2 to  9 p=1-exp(-SUM/2)= .60332
+ b-rank test for bits  3 to 10 p=1-exp(-SUM/2)= .61981
+ b-rank test for bits  4 to 11 p=1-exp(-SUM/2)= .24416
+ b-rank test for bits  5 to 12 p=1-exp(-SUM/2)= .62666
+ b-rank test for bits  6 to 13 p=1-exp(-SUM/2)= .60267
+ b-rank test for bits  7 to 14 p=1-exp(-SUM/2)= .59564
+ b-rank test for bits  8 to 15 p=1-exp(-SUM/2)= .82130
+ b-rank test for bits  9 to 16 p=1-exp(-SUM/2)= .31787
+ b-rank test for bits 10 to 17 p=1-exp(-SUM/2)= .72895
+ b-rank test for bits 11 to 18 p=1-exp(-SUM/2)= .81562
+ b-rank test for bits 12 to 19 p=1-exp(-SUM/2)= .79701
+ b-rank test for bits 13 to 20 p=1-exp(-SUM/2)= .18449
+ b-rank test for bits 14 to 21 p=1-exp(-SUM/2)= .19844
+ b-rank test for bits 15 to 22 p=1-exp(-SUM/2)= .45908
+ b-rank test for bits 16 to 23 p=1-exp(-SUM/2)= .99522
+ b-rank test for bits 17 to 24 p=1-exp(-SUM/2)= .14023
+ b-rank test for bits 18 to 25 p=1-exp(-SUM/2)= .02316
+ b-rank test for bits 19 to 26 p=1-exp(-SUM/2)= .57382
+ b-rank test for bits 20 to 27 p=1-exp(-SUM/2)= .62505
+ b-rank test for bits 21 to 28 p=1-exp(-SUM/2)= .67338
+ b-rank test for bits 22 to 29 p=1-exp(-SUM/2)= .68606
+ b-rank test for bits 23 to 30 p=1-exp(-SUM/2)= .19795
+ b-rank test for bits 24 to 31 p=1-exp(-SUM/2)= .41408
+ b-rank test for bits 25 to 32 p=1-exp(-SUM/2)= .51795
+   TEST SUMMARY, 25 tests on 100,000 random 6x8 matrices
+ These should be 25 uniform [0,1] random variables:
+     .621926     .603316     .619811     .244160     .626661
+     .602666     .595644     .821298     .317871     .728947
+     .815620     .797013     .184489     .198440     .459080
+     .995216     .140229     .023159     .573816     .625051
+     .673381     .686065     .197947     .414082     .517948
+   brank test summary for BB512.32       
+       The KS test for those 25 supposed UNI's yields
+                    KS p-value= .643039
+--------------------------------------------------------------------------------
+  No. missing words should average  141909. with sigma=428.
+ tst no  1:  142226 missing words,     .74 sigmas from mean, p-value= .77032
+ tst no  2:  142263 missing words,     .83 sigmas from mean, p-value= .79569
+ tst no  3:  141519 missing words,    -.91 sigmas from mean, p-value= .18089
+ tst no  4:  141987 missing words,     .18 sigmas from mean, p-value= .57200
+ tst no  5:  141457 missing words,   -1.06 sigmas from mean, p-value= .14529
+ tst no  6:  141935 missing words,     .06 sigmas from mean, p-value= .52391
+ tst no  7:  142188 missing words,     .65 sigmas from mean, p-value= .74251
+ tst no  8:  141562 missing words,    -.81 sigmas from mean, p-value= .20854
+ tst no  9:  141365 missing words,   -1.27 sigmas from mean, p-value= .10172
+ tst no 10:  142028 missing words,     .28 sigmas from mean, p-value= .60921
+ tst no 11:  141363 missing words,   -1.28 sigmas from mean, p-value= .10090
+ tst no 12:  141786 missing words,    -.29 sigmas from mean, p-value= .38662
+ tst no 13:  141314 missing words,   -1.39 sigmas from mean, p-value= .08212
+ tst no 14:  141364 missing words,   -1.27 sigmas from mean, p-value= .10131
+ tst no 15:  141605 missing words,    -.71 sigmas from mean, p-value= .23853
+ tst no 16:  142781 missing words,    2.04 sigmas from mean, p-value= .97916
+ tst no 17:  141071 missing words,   -1.96 sigmas from mean, p-value= .02507
+ tst no 18:  142186 missing words,     .65 sigmas from mean, p-value= .74100
+ tst no 19:  141260 missing words,   -1.52 sigmas from mean, p-value= .06462
+ tst no 20:  141906 missing words,    -.01 sigmas from mean, p-value= .49690
+--------------------------------------------------------------------------------
+    OPSO for BB512.32        using bits 23 to 32        142122   .733  .7683
+    OPSO for BB512.32        using bits 22 to 31        142139   .792  .7858
+    OPSO for BB512.32        using bits 21 to 30        141690  -.756  .2247
+    OPSO for BB512.32        using bits 20 to 29        141615 -1.015  .1551
+    OPSO for BB512.32        using bits 19 to 28        141297 -2.111  .0174
+    OPSO for BB512.32        using bits 18 to 27        141622  -.991  .1609
+    OPSO for BB512.32        using bits 17 to 26        141634  -.949  .1712
+    OPSO for BB512.32        using bits 16 to 25        142242  1.147  .8743
+    OPSO for BB512.32        using bits 15 to 24        142293  1.323  .9071
+    OPSO for BB512.32        using bits 14 to 23        141720  -.653  .2569
+    OPSO for BB512.32        using bits 13 to 22        142409  1.723  .9576
+    OPSO for BB512.32        using bits 12 to 21        141749  -.553  .2902
+    OPSO for BB512.32        using bits 11 to 20        141836  -.253  .4002
+    OPSO for BB512.32        using bits 10 to 19        142539  2.171  .9850
+    OPSO for BB512.32        using bits  9 to 18        142003   .323  .6267
+    OPSO for BB512.32        using bits  8 to 17        141846  -.218  .4136
+    OPSO for BB512.32        using bits  7 to 16        141981   .247  .5976
+    OPSO for BB512.32        using bits  6 to 15        142171   .902  .8166
+    OPSO for BB512.32        using bits  5 to 14        142369  1.585  .9435
+    OPSO for BB512.32        using bits  4 to 13        141922   .044  .5174
+    OPSO for BB512.32        using bits  3 to 12        141943   .116  .5462
+    OPSO for BB512.32        using bits  2 to 11        142579  2.309  .9895
+    OPSO for BB512.32        using bits  1 to 10        141943   .116  .5462
+    OQSO for BB512.32        using bits 28 to 32        141845  -.218  .4137
+    OQSO for BB512.32        using bits 27 to 31        141587 -1.093  .1373
+    OQSO for BB512.32        using bits 26 to 30        141625  -.964  .1676
+    OQSO for BB512.32        using bits 25 to 29        141922   .043  .5171
+    OQSO for BB512.32        using bits 24 to 28        142055   .494  .6893
+    OQSO for BB512.32        using bits 23 to 27        142344  1.473  .9297
+    OQSO for BB512.32        using bits 22 to 26        141651  -.876  .1906
+    OQSO for BB512.32        using bits 21 to 25        141638  -.920  .1789
+    OQSO for BB512.32        using bits 20 to 24        142341  1.463  .9283
+    OQSO for BB512.32        using bits 19 to 23        142137   .772  .7799
+    OQSO for BB512.32        using bits 18 to 22        141550 -1.218  .1116
+    OQSO for BB512.32        using bits 17 to 21        141819  -.306  .3797
+    OQSO for BB512.32        using bits 16 to 20        142138   .775  .7809
+    OQSO for BB512.32        using bits 15 to 19        142105   .663  .7464
+    OQSO for BB512.32        using bits 14 to 18        141887  -.076  .4698
+    OQSO for BB512.32        using bits 13 to 17        142400  1.663  .9519
+    OQSO for BB512.32        using bits 12 to 16        141883  -.089  .4644
+    OQSO for BB512.32        using bits 11 to 15        141928   .063  .5252
+    OQSO for BB512.32        using bits 10 to 14        141959   .168  .5669
+    OQSO for BB512.32        using bits  9 to 13        141883  -.089  .4644
+    OQSO for BB512.32        using bits  8 to 12        141594 -1.069  .1426
+    OQSO for BB512.32        using bits  7 to 11        141716  -.655  .2561
+    OQSO for BB512.32        using bits  6 to 10        141911   .006  .5023
+    OQSO for BB512.32        using bits  5 to  9        142396  1.650  .9505
+    OQSO for BB512.32        using bits  4 to  8        142037   .433  .6674
+    OQSO for BB512.32        using bits  3 to  7        141697  -.720  .2358
+    OQSO for BB512.32        using bits  2 to  6        142458  1.860  .9686
+    OQSO for BB512.32        using bits  1 to  5        141706  -.689  .2453
+     DNA for BB512.32        using bits 31 to 32        141106 -2.370  .0089
+     DNA for BB512.32        using bits 30 to 31        141621  -.851  .1975
+     DNA for BB512.32        using bits 29 to 30        141986   .226  .5895
+     DNA for BB512.32        using bits 28 to 29        141691  -.644  .2598
+     DNA for BB512.32        using bits 27 to 28        142054   .427  .6652
+     DNA for BB512.32        using bits 26 to 27        142171   .772  .7799
+     DNA for BB512.32        using bits 25 to 26        141698  -.623  .2665
+     DNA for BB512.32        using bits 24 to 25        142081   .506  .6937
+     DNA for BB512.32        using bits 23 to 24        141037 -2.573  .0050
+     DNA for BB512.32        using bits 22 to 23        142049   .412  .6598
+     DNA for BB512.32        using bits 21 to 22        141998   .262  .6032
+     DNA for BB512.32        using bits 20 to 21        141743  -.491  .3118
+     DNA for BB512.32        using bits 19 to 20        141804  -.311  .3780
+     DNA for BB512.32        using bits 18 to 19        142640  2.155  .9844
+     DNA for BB512.32        using bits 17 to 18        141176 -2.163  .0153
+     DNA for BB512.32        using bits 16 to 17        141696  -.629  .2646
+     DNA for BB512.32        using bits 15 to 16        142244   .987  .8382
+     DNA for BB512.32        using bits 14 to 15        141705  -.603  .2733
+     DNA for BB512.32        using bits 13 to 14        142805  2.642  .9959
+     DNA for BB512.32        using bits 12 to 13        141687  -.656  .2560
+     DNA for BB512.32        using bits 11 to 12        141609  -.886  .1878
+     DNA for BB512.32        using bits 10 to 11        142203   .866  .8068
+     DNA for BB512.32        using bits  9 to 10        141864  -.134  .4468
+     DNA for BB512.32        using bits  8 to  9        141312 -1.762  .0390
+     DNA for BB512.32        using bits  7 to  8        142023   .335  .6313
+     DNA for BB512.32        using bits  6 to  7        142091   .536  .7040
+     DNA for BB512.32        using bits  5 to  6        141970   .179  .5710
+     DNA for BB512.32        using bits  4 to  5        142021   .329  .6291
+     DNA for BB512.32        using bits  3 to  4        141900  -.028  .4890
+     DNA for BB512.32        using bits  2 to  3        142002   .273  .6077
+     DNA for BB512.32        using bits  1 to  2        142633  2.135  .9836
+--------------------------------------------------------------------------------
+   Test results for BB512.32       
+ Chi-square with 5^5-5^4=2500 d.of f. for sample size:2560000
+                               chisquare  equiv normal  p-value
+  Results fo COUNT-THE-1's in successive bytes:
+ byte stream for BB512.32         2555.54       .785      .783890
+ byte stream for BB512.32         2490.88      -.129      .448691
+--------------------------------------------------------------------------------
+ Chi-square with 5^5-5^4=2500 d.of f. for sample size: 256000
+                      chisquare  equiv normal  p value
+  Results for COUNT-THE-1's in specified bytes:
+           bits  1 to  8  2422.50     -1.096      .136547
+           bits  2 to  9  2451.56      -.685      .246661
+           bits  3 to 10  2420.09     -1.130      .129210
+           bits  4 to 11  2519.95       .282      .611067
+           bits  5 to 12  2566.13       .935      .825174
+           bits  6 to 13  2281.29     -3.093      .000991
+           bits  7 to 14  2439.93      -.850      .197788
+           bits  8 to 15  2435.00      -.919      .178979
+           bits  9 to 16  2529.75       .421      .663045
+           bits 10 to 17  2456.08      -.621      .267275
+           bits 11 to 18  2557.47       .813      .791831
+           bits 12 to 19  2631.63      1.862      .968665
+           bits 13 to 20  2494.89      -.072      .471191
+           bits 14 to 21  2389.22     -1.567      .058599
+           bits 15 to 22  2459.73      -.569      .284529
+           bits 16 to 23  2624.31      1.758      .960623
+           bits 17 to 24  2524.31       .344      .634518
+           bits 18 to 25  2511.89       .168      .566743
+           bits 19 to 26  2435.69      -.909      .181564
+           bits 20 to 27  2511.68       .165      .565624
+           bits 21 to 28  2490.37      -.136      .445822
+           bits 22 to 29  2523.10       .327      .628032
+           bits 23 to 30  2524.93       .353      .637791
+           bits 24 to 31  2562.19       .880      .810437
+           bits 25 to 32  2472.92      -.383      .350881
+--------------------------------------------------------------------------------
+           CDPARK: result of ten tests on file BB512.32       
+            Of 12,000 tries, the average no. of successes
+                 should be 3523 with sigma=21.9
+            Successes: 3500    z-score: -1.050 p-value: .146807
+            Successes: 3535    z-score:   .548 p-value: .708135
+            Successes: 3554    z-score:  1.416 p-value: .921543
+            Successes: 3526    z-score:   .137 p-value: .554479
+            Successes: 3541    z-score:   .822 p-value: .794438
+            Successes: 3532    z-score:   .411 p-value: .659449
+            Successes: 3502    z-score:  -.959 p-value: .168804
+            Successes: 3535    z-score:   .548 p-value: .708135
+            Successes: 3519    z-score:  -.183 p-value: .427537
+            Successes: 3540    z-score:   .776 p-value: .781201
+ 
+           square size   avg. no.  parked   sample sigma
+             100.            3528.400       16.243
+            KSTEST for the above 10: p=  .540879
+--------------------------------------------------------------------------------
+               This is the MINIMUM DISTANCE test
+              for random integers in the file BB512.32       
+     Sample no.    d^2     avg     equiv uni            
+           5    1.0533   1.0711     .653044
+          10     .3668    .6996     .308311
+          15    1.5298    .7481     .785087
+          20    2.9579    .7958     .948837
+          25     .7214    .9977     .515707
+          30    1.0089    .9130     .637238
+          35     .9120    .9396     .600122
+          40     .3717    .9101     .311759
+          45     .8237    .8845     .562996
+          50     .2478    .9337     .220422
+          55    1.1971   1.0035     .699737
+          60    1.6362   1.0695     .806869
+          65     .9444   1.0329     .612934
+          70     .6929   1.0277     .501619
+          75     .5527   1.0286     .426181
+          80    2.0819   1.0368     .876611
+          85    1.3999   1.0639     .755103
+          90     .4056   1.0729     .334769
+          95     .8231   1.1013     .562742
+         100     .5237   1.0947     .409211
+     MINIMUM DISTANCE TEST for BB512.32       
+          Result of KS test on 20 transformed mindist^2's:
+                                  p-value= .237383
+--------------------------------------------------------------------------------
+               The 3DSPHERES test for file BB512.32       
+ sample no:  1     r^3=  11.041     p-value= .30791
+ sample no:  2     r^3=  18.744     p-value= .46464
+ sample no:  3     r^3=  43.419     p-value= .76480
+ sample no:  4     r^3=  22.001     p-value= .51971
+ sample no:  5     r^3=  55.132     p-value= .84082
+ sample no:  6     r^3= 114.169     p-value= .97776
+ sample no:  7     r^3=  30.089     p-value= .63321
+ sample no:  8     r^3= 153.087     p-value= .99392
+ sample no:  9     r^3=   8.563     p-value= .24831
+ sample no: 10     r^3=  26.532     p-value= .58704
+ sample no: 11     r^3=   5.155     p-value= .15789
+ sample no: 12     r^3=   3.377     p-value= .10647
+ sample no: 13     r^3=   4.253     p-value= .13218
+ sample no: 14     r^3=   5.239     p-value= .16023
+ sample no: 15     r^3=  78.574     p-value= .92713
+ sample no: 16     r^3=  62.560     p-value= .87574
+ sample no: 17     r^3= 154.779     p-value= .99425
+ sample no: 18     r^3=  38.259     p-value= .72065
+ sample no: 19     r^3= 111.145     p-value= .97540
+ sample no: 20     r^3=  12.561     p-value= .34209
+       3DSPHERES test for file BB512.32             p-value= .913161
+--------------------------------------------------------------------------------
+            RESULTS OF SQUEEZE TEST FOR BB512.32       
+         Table of standardized frequency counts
+     ( (obs-exp)/sqrt(exp) )^2
+        for j taking values <=6,7,8,...,47,>=48:
+      .6     -.3      .3      .9      .5      .5
+      .7      .2      .9      .9      .7      .9
+      .7     1.9    -2.0    -1.2      .6      .3
+     -.5     -.7    -1.1     -.5    -1.2      .2
+     1.4     -.3     -.7     -.5     -.3     3.6
+     -.9    -1.3     1.7      .8     -.9     -.5
+     -.7      .2     -.4     -.1     -.6    -1.0
+    -1.1
+           Chi-square with 42 degrees of freedom: 44.518
+              z-score=   .275  p-value= .633896
+______________________________________________________________
+--------------------------------------------------------------------------------
+                Test no.  1      p-value  .896956
+                Test no.  2      p-value  .934320
+                Test no.  3      p-value  .915082
+                Test no.  4      p-value  .278578
+                Test no.  5      p-value  .710005
+                Test no.  6      p-value  .924298
+                Test no.  7      p-value  .137084
+                Test no.  8      p-value  .513405
+                Test no.  9      p-value  .616856
+                Test no. 10      p-value  .272885
+   Results of the OSUM test for BB512.32       
+        KSTEST on the above 10 p-values:  .777534
+--------------------------------------------------------------------------------
+           The RUNS test for file BB512.32       
+     Up and down runs in a sample of 10000
+_________________________________________________ 
+                 Run test for BB512.32       :
+       runs up; ks test for 10 p's: .304124
+     runs down; ks test for 10 p's: .509203
+                 Run test for BB512.32       :
+       runs up; ks test for 10 p's: .631335
+     runs down; ks test for 10 p's: .923638
+--------------------------------------------------------------------------------
+                Results of craps test for BB512.32       
+  No. of wins:  Observed Expected
+                                98372    98585.86
+ Chisq=  25.31 for 20 degrees of freedom, p=  .81005
+               Throws Observed Expected  Chisq     Sum
+            SUMMARY  FOR BB512.32       
+                p-value for no. of wins: .169409
+                p-value for throws/game: .810047
+  Test completed.  File BB512.32       
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

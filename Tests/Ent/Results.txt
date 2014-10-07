@@ -1,0 +1,29 @@
+BB512B RSW - 128 MB bitstream file
+----------------------------------
+
+>ent -b BB512.32
+Entropy = 1.000000 bits per bit.
+
+Optimum compression would reduce the size
+of this 1073741824 bit file by 0 percent.
+
+Chi square distribution for 1073741824 samples is 0.48, and randomly
+would exceed this value 49.03 percent of the times.
+
+Arithmetic mean value of data bits is 0.5000 (0.5 = random).
+Monte Carlo value for Pi is 3.141828643 (error 0.01 percent).
+Serial correlation coefficient is 0.000005 (totally uncorrelated = 0.0).
+
+
+>ent BB512.32
+Entropy = 7.999999 bits per byte.
+
+Optimum compression would reduce the size
+of this 134217728 byte file by 0 percent.
+
+Chi square distribution for 134217728 samples is 270.42, and randomly
+would exceed this value 24.23 percent of the times.
+
+Arithmetic mean value of data bytes is 127.5019 (127.5 = random).
+Monte Carlo value for Pi is 3.141828643 (error 0.01 percent).
+Serial correlation coefficient is 0.000120 (totally uncorrelated = 0.0).

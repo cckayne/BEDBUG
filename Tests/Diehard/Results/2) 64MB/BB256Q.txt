@@ -1,0 +1,333 @@
+ BIRTHDAY SPACINGS TEST, M= 512 N=2**24 LAMBDA=  2.0000
+           BB256.32        using bits  1 to 24 p-value=  .340177
+           BB256.32        using bits  2 to 25 p-value=  .295589
+           BB256.32        using bits  3 to 26 p-value=  .733685
+           BB256.32        using bits  4 to 27 p-value=  .249865
+           BB256.32        using bits  5 to 28 p-value=  .035610
+           BB256.32        using bits  6 to 29 p-value=  .518238
+           BB256.32        using bits  7 to 30 p-value=  .323627
+           BB256.32        using bits  8 to 31 p-value=  .680774
+           BB256.32        using bits  9 to 32 p-value=  .631541
+   The 9 p-values were
+        .340177   .295589   .733685   .249865   .035610
+        .518238   .323627   .680774   .631541
+  A KSTEST for the 9 p-values yields  .486649
+--------------------------------------------------------------------------------
+           OPERM5 test for file BB256.32       
+ chisquare for 99 degrees of freedom=116.184; p-value= .885718
+           OPERM5 test for file BB256.32       
+ chisquare for 99 degrees of freedom=105.211; p-value= .684342
+--------------------------------------------------------------------------------
+    Binary rank test for BB256.32       
+         Rank test for 31x31 binary matrices:
+        rows from leftmost 31 bits of each 32-bit integer
+      rank   observed  expected (o-e)^2/e  sum
+        28       202     211.4   .419543     .420
+        29      5137    5134.0   .001741     .421
+        30     23137   23103.0   .049899     .471
+        31     11524   11551.5   .065584     .537
+  chisquare=  .537 for 3 d. of f.; p-value= .321146
+    Binary rank test for BB256.32       
+         Rank test for 32x32 binary matrices:
+        rows from leftmost 32 bits of each 32-bit integer
+      rank   observed  expected (o-e)^2/e  sum
+        29       215     211.4   .060688     .061
+        30      5103    5134.0   .187307     .248
+        31     23055   23103.0   .099922     .348
+        32     11627   11551.5   .493144     .841
+  chisquare=  .841 for 3 d. of f.; p-value= .339925
+--------------------------------------------------------------------------------
+ b-rank test for bits  1 to  8 p=1-exp(-SUM/2)= .05995
+ b-rank test for bits  2 to  9 p=1-exp(-SUM/2)= .57041
+ b-rank test for bits  3 to 10 p=1-exp(-SUM/2)= .36057
+ b-rank test for bits  4 to 11 p=1-exp(-SUM/2)= .95666
+ b-rank test for bits  5 to 12 p=1-exp(-SUM/2)= .72043
+ b-rank test for bits  6 to 13 p=1-exp(-SUM/2)= .17024
+ b-rank test for bits  7 to 14 p=1-exp(-SUM/2)= .47475
+ b-rank test for bits  8 to 15 p=1-exp(-SUM/2)= .44317
+ b-rank test for bits  9 to 16 p=1-exp(-SUM/2)= .89870
+ b-rank test for bits 10 to 17 p=1-exp(-SUM/2)= .95977
+ b-rank test for bits 11 to 18 p=1-exp(-SUM/2)= .25457
+ b-rank test for bits 12 to 19 p=1-exp(-SUM/2)= .02691
+ b-rank test for bits 13 to 20 p=1-exp(-SUM/2)= .77299
+ b-rank test for bits 14 to 21 p=1-exp(-SUM/2)= .53822
+ b-rank test for bits 15 to 22 p=1-exp(-SUM/2)= .62338
+ b-rank test for bits 16 to 23 p=1-exp(-SUM/2)= .09934
+ b-rank test for bits 17 to 24 p=1-exp(-SUM/2)= .68073
+ b-rank test for bits 18 to 25 p=1-exp(-SUM/2)= .27035
+ b-rank test for bits 19 to 26 p=1-exp(-SUM/2)= .21891
+ b-rank test for bits 20 to 27 p=1-exp(-SUM/2)= .26124
+ b-rank test for bits 21 to 28 p=1-exp(-SUM/2)= .36492
+ b-rank test for bits 22 to 29 p=1-exp(-SUM/2)= .56650
+ b-rank test for bits 23 to 30 p=1-exp(-SUM/2)= .27653
+ b-rank test for bits 24 to 31 p=1-exp(-SUM/2)= .72392
+ b-rank test for bits 25 to 32 p=1-exp(-SUM/2)= .36564
+   TEST SUMMARY, 25 tests on 100,000 random 6x8 matrices
+ These should be 25 uniform [0,1] random variables:
+     .059953     .570407     .360565     .956655     .720433
+     .170241     .474753     .443172     .898695     .959767
+     .254566     .026911     .772991     .538217     .623379
+     .099342     .680725     .270353     .218911     .261239
+     .364919     .566505     .276534     .723916     .365637
+   brank test summary for BB256.32       
+       The KS test for those 25 supposed UNI's yields
+                    KS p-value= .149064
+--------------------------------------------------------------------------------
+  No. missing words should average  141909. with sigma=428.
+ tst no  1:  142450 missing words,    1.26 sigmas from mean, p-value= .89675
+ tst no  2:  142608 missing words,    1.63 sigmas from mean, p-value= .94870
+ tst no  3:  142086 missing words,     .41 sigmas from mean, p-value= .66012
+ tst no  4:  141772 missing words,    -.32 sigmas from mean, p-value= .37416
+ tst no  5:  141918 missing words,     .02 sigmas from mean, p-value= .50808
+ tst no  6:  142506 missing words,    1.39 sigmas from mean, p-value= .91836
+ tst no  7:  142279 missing words,     .86 sigmas from mean, p-value= .80613
+ tst no  8:  142222 missing words,     .73 sigmas from mean, p-value= .76747
+ tst no  9:  142013 missing words,     .24 sigmas from mean, p-value= .59570
+ tst no 10:  142180 missing words,     .63 sigmas from mean, p-value= .73644
+ tst no 11:  141870 missing words,    -.09 sigmas from mean, p-value= .46339
+ tst no 12:  141981 missing words,     .17 sigmas from mean, p-value= .56650
+ tst no 13:  142051 missing words,     .33 sigmas from mean, p-value= .62968
+ tst no 14:  141804 missing words,    -.25 sigmas from mean, p-value= .40280
+ tst no 15:  142194 missing words,     .67 sigmas from mean, p-value= .74701
+ tst no 16:  141785 missing words,    -.29 sigmas from mean, p-value= .38572
+ tst no 17:  141437 missing words,   -1.10 sigmas from mean, p-value= .13489
+ tst no 18:  141803 missing words,    -.25 sigmas from mean, p-value= .40190
+ tst no 19:  142373 missing words,    1.08 sigmas from mean, p-value= .86067
+ tst no 20:  142052 missing words,     .33 sigmas from mean, p-value= .63056
+--------------------------------------------------------------------------------
+    OPSO for BB256.32        using bits 23 to 32        142663  2.599  .9953
+    OPSO for BB256.32        using bits 22 to 31        142325  1.433  .9241
+    OPSO for BB256.32        using bits 21 to 30        142035   .433  .6676
+    OPSO for BB256.32        using bits 20 to 29        141445 -1.601  .0547
+    OPSO for BB256.32        using bits 19 to 28        141571 -1.167  .1217
+    OPSO for BB256.32        using bits 18 to 27        141745  -.567  .2855
+    OPSO for BB256.32        using bits 17 to 26        141916   .023  .5092
+    OPSO for BB256.32        using bits 16 to 25        141530 -1.308  .0954
+    OPSO for BB256.32        using bits 15 to 24        141829  -.277  .3909
+    OPSO for BB256.32        using bits 14 to 23        141903  -.022  .4913
+    OPSO for BB256.32        using bits 13 to 22        141603 -1.056  .1454
+    OPSO for BB256.32        using bits 12 to 21        141609 -1.036  .1502
+    OPSO for BB256.32        using bits 11 to 20        141521 -1.339  .0903
+    OPSO for BB256.32        using bits 10 to 19        141552 -1.232  .1089
+    OPSO for BB256.32        using bits  9 to 18        141819  -.311  .3777
+    OPSO for BB256.32        using bits  8 to 17        142017   .371  .6448
+    OPSO for BB256.32        using bits  7 to 16        141851  -.201  .4203
+    OPSO for BB256.32        using bits  6 to 15        142021   .385  .6499
+    OPSO for BB256.32        using bits  5 to 14        142289  1.309  .9048
+    OPSO for BB256.32        using bits  4 to 13        141613 -1.022  .1534
+    OPSO for BB256.32        using bits  3 to 12        141180 -2.515  .0060
+    OPSO for BB256.32        using bits  2 to 11        142732  2.837  .9977
+    OPSO for BB256.32        using bits  1 to 10        141790  -.411  .3404
+    OQSO for BB256.32        using bits 28 to 32        141895  -.049  .4806
+    OQSO for BB256.32        using bits 27 to 31        141916   .023  .5090
+    OQSO for BB256.32        using bits 26 to 30        142054   .490  .6881
+    OQSO for BB256.32        using bits 25 to 29        141863  -.157  .4376
+    OQSO for BB256.32        using bits 24 to 28        142444  1.812  .9650
+    OQSO for BB256.32        using bits 23 to 27        141918   .029  .5117
+    OQSO for BB256.32        using bits 22 to 26        142137   .772  .7799
+    OQSO for BB256.32        using bits 21 to 25        142180   .918  .8206
+    OQSO for BB256.32        using bits 20 to 24        141999   .304  .6194
+    OQSO for BB256.32        using bits 19 to 23        141754  -.527  .2993
+    OQSO for BB256.32        using bits 18 to 22        141766  -.486  .3135
+    OQSO for BB256.32        using bits 17 to 21        141585 -1.099  .1358
+    OQSO for BB256.32        using bits 16 to 20        142250  1.155  .8759
+    OQSO for BB256.32        using bits 15 to 19        141650  -.879  .1897
+    OQSO for BB256.32        using bits 14 to 18        141567 -1.160  .1229
+    OQSO for BB256.32        using bits 13 to 17        141724  -.628  .2649
+    OQSO for BB256.32        using bits 12 to 16        141733  -.598  .2750
+    OQSO for BB256.32        using bits 11 to 15        142246  1.141  .8731
+    OQSO for BB256.32        using bits 10 to 14        141249 -2.238  .0126
+    OQSO for BB256.32        using bits  9 to 13        141631  -.943  .1727
+    OQSO for BB256.32        using bits  8 to 12        141980   .240  .5947
+    OQSO for BB256.32        using bits  7 to 11        142202   .992  .8394
+    OQSO for BB256.32        using bits  6 to 10        141923   .046  .5185
+    OQSO for BB256.32        using bits  5 to  9        141792  -.398  .3454
+    OQSO for BB256.32        using bits  4 to  8        142020   .375  .6462
+    OQSO for BB256.32        using bits  3 to  7        142154   .829  .7966
+    OQSO for BB256.32        using bits  2 to  6        141903  -.021  .4914
+    OQSO for BB256.32        using bits  1 to  5        141868  -.140  .4443
+     DNA for BB256.32        using bits 31 to 32        141570 -1.001  .1584
+     DNA for BB256.32        using bits 30 to 31        141866  -.128  .4491
+     DNA for BB256.32        using bits 29 to 30        141512 -1.172  .1206
+     DNA for BB256.32        using bits 28 to 29        142319  1.208  .8866
+     DNA for BB256.32        using bits 27 to 28        141859  -.148  .4410
+     DNA for BB256.32        using bits 26 to 27        141189 -2.125  .0168
+     DNA for BB256.32        using bits 25 to 26        141884  -.075  .4702
+     DNA for BB256.32        using bits 24 to 25        141631  -.821  .2058
+     DNA for BB256.32        using bits 23 to 24        141372 -1.585  .0565
+     DNA for BB256.32        using bits 22 to 23        141678  -.682  .2475
+     DNA for BB256.32        using bits 21 to 22        141230 -2.004  .0225
+     DNA for BB256.32        using bits 20 to 21        141868  -.122  .4515
+     DNA for BB256.32        using bits 19 to 20        142230   .946  .8279
+     DNA for BB256.32        using bits 18 to 19        142538  1.854  .9682
+     DNA for BB256.32        using bits 17 to 18        141680  -.676  .2494
+     DNA for BB256.32        using bits 16 to 17        142569  1.946  .9742
+     DNA for BB256.32        using bits 15 to 16        141895  -.042  .4831
+     DNA for BB256.32        using bits 14 to 15        141855  -.160  .4363
+     DNA for BB256.32        using bits 13 to 14        142070   .474  .6822
+     DNA for BB256.32        using bits 12 to 13        142130   .651  .7425
+     DNA for BB256.32        using bits 11 to 12        142722  2.397  .9917
+     DNA for BB256.32        using bits 10 to 11        142162   .745  .7720
+     DNA for BB256.32        using bits  9 to 10        142227   .937  .8256
+     DNA for BB256.32        using bits  8 to  9        142249  1.002  .8418
+     DNA for BB256.32        using bits  7 to  8        142847  2.766  .9972
+     DNA for BB256.32        using bits  6 to  7        142416  1.495  .9325
+     DNA for BB256.32        using bits  5 to  6        141708  -.594  .2763
+     DNA for BB256.32        using bits  4 to  5        142020   .326  .6280
+     DNA for BB256.32        using bits  3 to  4        142377  1.380  .9161
+     DNA for BB256.32        using bits  2 to  3        142335  1.256  .8954
+     DNA for BB256.32        using bits  1 to  2        142020   .326  .6280
+--------------------------------------------------------------------------------
+   Test results for BB256.32       
+ Chi-square with 5^5-5^4=2500 d.of f. for sample size:2560000
+                               chisquare  equiv normal  p-value
+  Results fo COUNT-THE-1's in successive bytes:
+ byte stream for BB256.32         2525.30       .358      .639771
+ byte stream for BB256.32         2588.88      1.257      .895614
+--------------------------------------------------------------------------------
+ Chi-square with 5^5-5^4=2500 d.of f. for sample size: 256000
+                      chisquare  equiv normal  p value
+  Results for COUNT-THE-1's in specified bytes:
+           bits  1 to  8  2452.22      -.676      .249626
+           bits  2 to  9  2425.92     -1.048      .147396
+           bits  3 to 10  2549.50       .700      .758056
+           bits  4 to 11  2358.74     -1.998      .022876
+           bits  5 to 12  2632.27      1.871      .969303
+           bits  6 to 13  2689.90      2.686      .996380
+           bits  7 to 14  2437.68      -.881      .189086
+           bits  8 to 15  2532.34       .457      .676311
+           bits  9 to 16  2547.64       .674      .749751
+           bits 10 to 17  2511.61       .164      .565195
+           bits 11 to 18  2535.91       .508      .694205
+           bits 12 to 19  2498.95      -.015      .494093
+           bits 13 to 20  2444.79      -.781      .217479
+           bits 14 to 21  2490.75      -.131      .447971
+           bits 15 to 22  2533.40       .472      .681670
+           bits 16 to 23  2492.53      -.106      .457939
+           bits 17 to 24  2391.17     -1.539      .061898
+           bits 18 to 25  2599.69      1.410      .920713
+           bits 19 to 26  2502.20       .031      .512425
+           bits 20 to 27  2625.21      1.771      .961698
+           bits 21 to 28  2594.92      1.342      .910263
+           bits 22 to 29  2416.04     -1.187      .117544
+           bits 23 to 30  2521.79       .308      .621043
+           bits 24 to 31  2401.14     -1.398      .081048
+           bits 25 to 32  2592.79      1.312      .905276
+--------------------------------------------------------------------------------
+           CDPARK: result of ten tests on file BB256.32       
+            Of 12,000 tries, the average no. of successes
+                 should be 3523 with sigma=21.9
+            Successes: 3533    z-score:   .457 p-value: .676028
+            Successes: 3529    z-score:   .274 p-value: .607947
+            Successes: 3502    z-score:  -.959 p-value: .168804
+            Successes: 3516    z-score:  -.320 p-value: .374623
+            Successes: 3478    z-score: -2.055 p-value: .019949
+            Successes: 3540    z-score:   .776 p-value: .781201
+            Successes: 3495    z-score: -1.279 p-value: .100530
+            Successes: 3490    z-score: -1.507 p-value: .065925
+            Successes: 3531    z-score:   .365 p-value: .642555
+            Successes: 3550    z-score:  1.233 p-value: .891189
+ 
+           square size   avg. no.  parked   sample sigma
+             100.            3516.400       22.730
+            KSTEST for the above 10: p=  .447191
+--------------------------------------------------------------------------------
+               This is the MINIMUM DISTANCE test
+              for random integers in the file BB256.32       
+     Sample no.    d^2     avg     equiv uni            
+           5     .1970   2.0025     .179636
+          10    2.1061   1.6491     .879566
+          15     .8735   1.2589     .584340
+          20     .3111   1.1083     .268529
+          25     .0176   1.1638     .017513
+          30     .3730   1.2444     .312598
+          35    1.5790   1.1945     .795440
+          40     .0969   1.1885     .092755
+          45     .0374   1.1108     .036936
+          50    1.4179   1.1593     .759490
+          55     .5430   1.2232     .420580
+          60     .4922   1.1576     .390253
+          65     .5770   1.1248     .440073
+          70    1.3637   1.1205     .746035
+          75     .3298   1.1053     .282100
+          80     .3074   1.0873     .265762
+          85     .3773   1.0669     .315559
+          90     .3378   1.0844     .287856
+          95     .5336   1.0599     .415065
+         100     .7742   1.0558     .540717
+     MINIMUM DISTANCE TEST for BB256.32       
+          Result of KS test on 20 transformed mindist^2's:
+                                  p-value= .214045
+--------------------------------------------------------------------------------
+               The 3DSPHERES test for file BB256.32       
+ sample no:  1     r^3=  30.362     p-value= .63653
+ sample no:  2     r^3=  30.478     p-value= .63793
+ sample no:  3     r^3=  36.668     p-value= .70544
+ sample no:  4     r^3=  23.390     p-value= .54145
+ sample no:  5     r^3=   3.289     p-value= .10384
+ sample no:  6     r^3=   5.444     p-value= .16597
+ sample no:  7     r^3=  79.662     p-value= .92973
+ sample no:  8     r^3=  11.638     p-value= .32155
+ sample no:  9     r^3=  35.877     p-value= .69757
+ sample no: 10     r^3=  16.506     p-value= .42316
+ sample no: 11     r^3=  71.599     p-value= .90806
+ sample no: 12     r^3=  61.362     p-value= .87067
+ sample no: 13     r^3=  45.907     p-value= .78351
+ sample no: 14     r^3=   8.598     p-value= .24920
+ sample no: 15     r^3=  45.013     p-value= .77697
+ sample no: 16     r^3=  20.427     p-value= .49385
+ sample no: 17     r^3=   7.894     p-value= .23136
+ sample no: 18     r^3=    .319     p-value= .01058
+ sample no: 19     r^3=  19.917     p-value= .48516
+ sample no: 20     r^3=   3.821     p-value= .11958
+       3DSPHERES test for file BB256.32             p-value= .004408
+--------------------------------------------------------------------------------
+            RESULTS OF SQUEEZE TEST FOR BB256.32       
+         Table of standardized frequency counts
+     ( (obs-exp)/sqrt(exp) )^2
+        for j taking values <=6,7,8,...,47,>=48:
+    -1.5      .5      .1     -.4      .4     -.2
+     -.3    -1.0     1.0      .5     -.1     -.6
+    -1.1      .4    -2.1     -.1     1.1    -1.2
+      .6      .9     1.3     1.7     -.7    -1.6
+      .4    -1.2     1.8     -.1     1.7    -1.1
+      .0      .8     -.9     -.6     -.6     -.1
+     -.2      .8     -.4     2.1      .9      .0
+    -1.1
+           Chi-square with 42 degrees of freedom: 40.587
+              z-score=  -.154  p-value= .466866
+______________________________________________________________
+--------------------------------------------------------------------------------
+                Test no.  1      p-value  .893304
+                Test no.  2      p-value  .924278
+                Test no.  3      p-value  .230034
+                Test no.  4      p-value  .448487
+                Test no.  5      p-value  .901748
+                Test no.  6      p-value  .780320
+                Test no.  7      p-value  .330941
+                Test no.  8      p-value  .236827
+                Test no.  9      p-value  .032015
+                Test no. 10      p-value  .261647
+   Results of the OSUM test for BB256.32       
+        KSTEST on the above 10 p-values:  .309262
+--------------------------------------------------------------------------------
+           The RUNS test for file BB256.32       
+     Up and down runs in a sample of 10000
+_________________________________________________ 
+                 Run test for BB256.32       :
+       runs up; ks test for 10 p's: .272808
+     runs down; ks test for 10 p's: .315989
+                 Run test for BB256.32       :
+       runs up; ks test for 10 p's: .177916
+     runs down; ks test for 10 p's: .013907
+--------------------------------------------------------------------------------
+                Results of craps test for BB256.32       
+  No. of wins:  Observed Expected
+                                98394    98585.86
+ Chisq=   9.61 for 20 degrees of freedom, p=  .02534
+               Throws Observed Expected  Chisq     Sum
+            SUMMARY  FOR BB256.32       
+                p-value for no. of wins: .195417
+                p-value for throws/game: .025344
+  Test completed.  File BB256.32       
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
