@@ -221,9 +221,7 @@ int main(int argc, char *argv[])
 			if (oform==ofASC) log_add("MSG",msg);
 			#endif
 		// Encrypt: Vernam XOR
-		#ifdef NEVER
 		if (ctype==ctVernam)  strcpy(ctx, Vernam(rng,msg));
-		#endif
 		// Encrypt: Caesar MOD
 		if (ctype==ctCaesar)  strcpy(ctx, rCaesarStr(rng, cmEncipher, msg, MOD, START));
 		// Encrypt: Caesar MIX

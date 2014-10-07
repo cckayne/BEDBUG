@@ -108,7 +108,8 @@ void mote16_SeedW(char *seed, int rounds)
 	l=strlen(seed);
 	if (l>STBYTES) l=STBYTES;
 	memset(s,0,l+1);
-	strcpy(s,seed);
+	/* truncate seed to state-size if necessary */
+	for (i=0; i<l; i++) s[i] = seed[i];
 	mote16_Reset();
 	memcpy((char *)state, (char *)s, l);
 	mix();

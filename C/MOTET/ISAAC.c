@@ -11,6 +11,8 @@
 /* byte size of state array */
 #define STSZ 256
 #define STM1 STSZ-1
+#define STBYTES STSZ*4
+#define STBITS 128+STBYTES*8
 /*
 ------------------------------------------------------------------------------
 My random number generator, ISAAC.
@@ -131,10 +133,12 @@ ub4 ISAAC_Random(void)
 void ISAAC_SeedW(char *seed, int flag)
 {
 	register ub4 i,l;
-	char s[MAXK];
+	char s[STBYTES*2];
 	l=strlen(seed);
+	if (l>STBYTES) l=STBYTES;
 	memset(s,0,l+1);
-	strcpy(s,seed);
+	/* truncate seed to state-size if necessary */
+	for (i=0; i<l; i++) s[i] = seed[i];
 	for (i=0; i<STSZ; i++) { mm[i]=0; rsl[i]=0; }
 	memcpy((char *)rsl, (char *)s, l);
 	ISAAC_init(flag);

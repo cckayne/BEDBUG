@@ -77,3 +77,5 @@ cckayne@gmail.com
 https://github.com/cckayne/BEDBUG
 https://code.google.com/p/bedbug-csprng-stream-cipher/
 https://sourceforge.net/projects/bedbug-csprng-stream-cipher/
+https://sourceforge.net/projects/motet-cipher-scrambler/
+https://github.com/cckayne/MOTET
