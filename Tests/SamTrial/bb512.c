@@ -1,48 +1,46 @@
-/*  BEDBUG128 - A FLEA-inspired CSPRNG and Stream Cipher
-    BEDBUG128 is a BEDBUG with a 128-byte internal state array
-    BEDBUG128 may be seeded with a 4096-bit key
-    BEDBUG128 Copyright C.C.Kayne 2014, GNU GPL V.3, cckayne@gmail.com
-    BEDBUG128 is based on FLEA and other PRNG insights by Bob Jenkins. Public Domain.
+/*  BEDBUG512 - A FLEA-inspired CSPRNG and Stream Cipher
+    BEDBUG512 is a BEDBUG with a 512-byte internal state array
+    BEDBUG512 may be seeded with a 2048-bit key
+    BEDBUG512 Copyright C.C.Kayne 2014, GNU GPL V.3, cckayne@gmail.com
+    BEDBUG512 is based on FLEA and other PRNG insights by Bob Jenkins. Public Domain.
 */
 #include <stdio.h>
 #include <stddef.h>
 #include <string.h>
-#include "bb128.h"
+#include "bb512.h"
 
 /* are we testing? */
 //#define TEST
 /* verbose test output */
 //#define VERBOSE
 /* byte size of state array */
-#define STSZ 128
+#define STSZ 512
 #define STM1 STSZ-1
-#define STBYTES STSZ*4
-#define STBITS 128+STBYTES*8
-/* BB128b performs an extra pseudo-random lookup */
+/* BB512b performs an extra pseudo-random lookup */
 #define B
-/* BB128 option: switch ROT constants at each bb128() call */
+/* BB512 option: switch ROT constants at each bb512() call */
 #define RSW
 /* 2**32/phi, where phi is the golden ratio */
 #define GOLDEN 0x9e3779b9
 
-// BB128 STATE
+// BB512 STATE
 static ub4 rsl[STSZ], state[STSZ];
 static ub4 b,c,d,e, rcnt=0;
 
-// BB128 ROT switcher
+// BB512 ROT switcher
 typedef struct Rsw { ub4 iii; ub4 jjj; ub4 kkk; };
 static ub4 ri=0;
 static const struct Rsw rsw[4] = {
 #ifdef B
-14,  9, 16, // avalanche: 17.31 bits (worst case)
-17,  8, 14, // avalanche: 17.31 bits (worst case)
-17, 19, 30, // avalanche: 17.19 bits (worst case)
-15,  9, 24  // avalanche: 17.19 bits (worst case)
+17,  3,  4, // avalanche: 16.56 bits (worst case)
+15, 18, 23, // avalanche: 16.52 bits (worst case)
+ 3, 23, 24, // avalanche: 16.52 bits (worst case)
+ 3, 15,  8  // avalanche: 16.53 bits (worst case)
 #else
-12, 25,  4, // avalanche: 17.50 bits (worst case)
-18, 24,  4, // avalanche: 17.44 bits (worst case)
-15, 22,  6, // avalanche: 17.31 bits (worst case)
- 6,  6, 26  // avalanche: 17.31 bits (worst case)
+24,  4, 23, // avalanche: 16.80 bits (worst case)
+18, 26,  2, // avalanche: 16.50 bits (worst case)
+ 3,  6, 22, // avalanche: 16.50 bits (worst case)
+20, 17,  8  // avalanche: 16.66 bits (worst case)
 #endif
 };
 
@@ -54,7 +52,7 @@ static ub4 bcnt=0;
 static void statepeek(void) {
 	register ub4 i, gcnt=0;
 	++bcnt;
-	printf("%3u) bb128 using rsw[%1u]...\n",bcnt,ri);
+	printf("%3u) bb512 using rsw[%1u]...\n",bcnt,ri);
 	for (i=0; i<STSZ; i++) {
 		#ifdef VERBOSE
 		printf("rsl %3u: %11u %c %02X  | state %3u: %11u %c %02X\n",
@@ -70,8 +68,8 @@ static void statepeek(void) {
 #endif
 
 
-// BEDBUG128 is filled every 128 rounds
-static void bb128(void) {
+// BEDBUG512 is filled every 512 rounds
+static void bb512(void) {
     register ub4 i;
 	for (i=0; i<STSZ; i++) {
 		e = state[d & STM1] - rot(b,rsw[ri].iii);
@@ -92,12 +90,12 @@ static void bb128(void) {
 	ri = (c & 3);
 	#endif
 }
-
-
-// reset/initialize BEDBUG128 (obligatory)	
-void bb128_Reset(void) {
+	
+	
+// reset/initialize BEDBUG512 (obligatory)
+void bb512_Reset(void) {
 	register ub4 i;
-	rcnt=0; ri = 0;
+	rcnt=0;
 	b = c = d = e = GOLDEN;
 	for (i=0; i<STSZ; i++) {
 		state[i] = GOLDEN; rsl[i] = 0;
@@ -105,30 +103,28 @@ void bb128_Reset(void) {
 }
 
 
-// obtain a BEDBUG pseudo-random value in [0..2**32]
-ub4 bb128_Random(void) {
+// obtain a BEDBUG512 pseudo-random value in [0..2**32]
+ub4 bb512_Random(void) {
 	ub4 r = rsl[rcnt];
 	++rcnt;
 	if (rcnt==STSZ) {
-		bb128();
+		bb512();
 		rcnt = 0;
 	}
 	return r;
 }
 
 
-// seed BEDBUG128 with a 4096-bit block of 4-byte words (Bob Jenkins method) 
-void bb128_SeedW(char *seed, int rounds)
+// seed BEDBUG512 with a 2048-bit block of 4-byte words (Bob Jenkins method) 
+void bb512_SeedW(char *seed, int rounds)
 {
 	register ub4 i,l;
-	char s[STBYTES*2];
+	char s[STSZ];
 	l=strlen(seed);
-	if (l>STBYTES) l=STBYTES;
 	memset(s,0,l+1);
-	/* truncate seed to state-size if necessary */
-	for (i=0; i<l; i++) s[i] = seed[i];
-	bb128_Reset();
+	strcpy(s,seed);
+	bb512_Reset();
 	memcpy((char *)state, (char *)s, l);
-	bb128();
-	for (i=0; i<rounds; i++) bb128_Random();  
+	bb512();
+	for (i=0; i<rounds; i++) bb512_Random();  
 }

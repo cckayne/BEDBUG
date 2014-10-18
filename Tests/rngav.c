@@ -17,9 +17,9 @@ typedef  unsigned char      u1;
 typedef  unsigned long      u4;
 
 // RNG defines
-//#define MOTE
+#define MOTE
 //#define MITE
-#define BEDBUG
+//#define BEDBUG
 //#define FLEA
 
 #ifdef MOTE
@@ -39,8 +39,8 @@ typedef  unsigned long      u4;
 #define BUCKETS 128
 #define LOGLEN  16
 /* 18.25 for MITE32; 17.5 for MITE64; 17.0 for MITE128; 19.0 for MITE16; 20.4 for MITE8; 17.0 for BB128; 16.6 for BB256; 16.4 for BB512 */
-#define CUTOFF 20.0 
-#define STSZ 8
+#define CUTOFF 17.5 
+#define STSZ 64
 #define STM1 STSZ-1
 /* 2**32/phi, where phi is the golden ratio */
 #define GOLDEN   0x9e3779b9
@@ -259,7 +259,7 @@ static int report( u4 *data, u4 *data2, u4 length, int print)
   worst /= length;
   if (worst > CUTOFF) {
     if (print) {
-      printf("%2d, %2d, %2d, // avalanche: %2.2f bits (worst case)\n", 
+      printf("%2d, %2d, %2d, // avalanche: %2.2f bits \n", 
 	     iii, jjj, kkk, (float)worst);
     }
     return 1;

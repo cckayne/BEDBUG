@@ -1,6 +1,6 @@
 /*  BEDBUG128 - A FLEA-inspired CSPRNG and Stream Cipher
     BEDBUG128 is a BEDBUG with a 128-byte internal state array
-    BEDBUG128 may be seeded with a 4096-bit key
+    BEDBUG128 may be seeded with a 512-bit key
     BEDBUG128 Copyright C.C.Kayne 2014, GNU GPL V.3, cckayne@gmail.com
     BEDBUG128 is based on FLEA and other PRNG insights by Bob Jenkins. Public Domain.
 */
@@ -16,8 +16,6 @@
 /* byte size of state array */
 #define STSZ 128
 #define STM1 STSZ-1
-#define STBYTES STSZ*4
-#define STBITS 128+STBYTES*8
 /* BB128b performs an extra pseudo-random lookup */
 #define B
 /* BB128 option: switch ROT constants at each bb128() call */
@@ -29,7 +27,7 @@
 static ub4 rsl[STSZ], state[STSZ];
 static ub4 b,c,d,e, rcnt=0;
 
-// BB128 ROT switcher
+// BB512 ROT switcher
 typedef struct Rsw { ub4 iii; ub4 jjj; ub4 kkk; };
 static ub4 ri=0;
 static const struct Rsw rsw[4] = {
@@ -97,7 +95,7 @@ static void bb128(void) {
 // reset/initialize BEDBUG128 (obligatory)	
 void bb128_Reset(void) {
 	register ub4 i;
-	rcnt=0; ri = 0;
+	rcnt=0;
 	b = c = d = e = GOLDEN;
 	for (i=0; i<STSZ; i++) {
 		state[i] = GOLDEN; rsl[i] = 0;
@@ -117,16 +115,15 @@ ub4 bb128_Random(void) {
 }
 
 
-// seed BEDBUG128 with a 4096-bit block of 4-byte words (Bob Jenkins method) 
+// seed BEDBUG128 with a 512-bit block of 4-byte words (Bob Jenkins method) 
 void bb128_SeedW(char *seed, int rounds)
 {
 	register ub4 i,l;
-	char s[STBYTES*2];
+	char s[STSZ*2];
 	l=strlen(seed);
-	if (l>STBYTES) l=STBYTES;
+	if (l>STSZ) l=STSZ;
 	memset(s,0,l+1);
-	/* truncate seed to state-size if necessary */
-	for (i=0; i<l; i++) s[i] = seed[i];
+	strcpy(s,seed);
 	bb128_Reset();
 	memcpy((char *)state, (char *)s, l);
 	bb128();
